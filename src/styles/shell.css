@@ -1,0 +1,380 @@
+/* The frame both panes share: the masthead (lime mark, wordmark, connection
+   badge), the tab bar, one hairline between sections, the footer and the toast.
+   Owns every vertical gap between sections. Flat: no card, shadow or blur -
+   only the toast moves. The marker bands (behind "fix" and behind the open
+   tab's label) are the only two gradients, both hard-edged, both lime. */
+
+/* A column, not a grid: a grid hands a short tab's spare height to every row
+   (the masthead and the tab bar ballooned on Settings), while a column keeps
+   them their own height and lets the view take the rest, so the footer stays
+   at the foot of the pane. */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-section);
+  padding: 18px;
+}
+.app-shell > .view {
+  flex: 1 0 auto;
+}
+
+.masthead {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+/* The mark is drawn, not typed: the same lime tile and ink "p," as
+   public/assets/icon.svg, filled from the tokens so a re-brand is one edit. */
+.brand-mark {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+.mark-tile {
+  fill: var(--mark);
+}
+.mark-glyph {
+  fill: var(--ink);
+}
+
+.masthead-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 8px;
+  min-width: 0;
+}
+.wordmark {
+  color: var(--ink);
+  font-size: var(--fs-lead);
+  font-weight: var(--w-strong);
+  line-height: 1.2;
+}
+/* The highlighter: a lime swipe behind "fix" (the band sits over the middle of
+   the letters, a few px of room each side), the comma plain ink. */
+.wordmark .hl {
+  padding: 0 3px;
+  background: linear-gradient(
+    transparent 30%,
+    var(--mark) 30%,
+    var(--mark) 92%,
+    transparent 92%
+  );
+}
+.masthead h1 {
+  color: var(--ink-2);
+  font-size: var(--fs-body);
+  font-weight: var(--w-regular);
+  line-height: 1.3;
+}
+
+/* The connection badge: a state dot and the words, no fill. The dot comes
+   from the shared state-word rule in controls.css. */
+.connection {
+  align-self: center;
+  justify-self: end;
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+  white-space: nowrap;
+}
+.connection.ready::before {
+  background: var(--ok);
+}
+/* A rejected host's badge is a whole requirement ("PowerPoint Microsoft 365
+   2208 / Office 2024 or newer required"), longer than the pane at 320 px: it
+   wraps instead of leaving it. */
+.connection.error {
+  color: var(--bad);
+  white-space: normal;
+}
+.connection.error::before {
+  background: var(--bad);
+}
+
+/* Marker tabs: no tray, no pill, no underline. The bar's hairline is the
+   baseline; the open tab is ink 600 with the same lime swipe behind its LABEL
+   (the span inside the button), not behind the whole tab. */
+.tab-bar {
+  display: grid;
+  /* Equal columns for however many tabs the bar holds - but each track keeps
+     its min-content floor, so a long label (Workbook) takes what it needs from
+     the others instead of being clipped. */
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  border-bottom: 1px solid var(--line);
+}
+.tab {
+  min-height: var(--control-h);
+  margin-bottom: -1px;
+  padding: 0 6px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  color: var(--ink-2);
+  background: transparent;
+  font-size: var(--fs-body);
+  font-weight: var(--w-regular);
+  cursor: pointer;
+}
+.tab:hover:not(.active) {
+  border-bottom-color: var(--line-strong);
+  color: var(--ink);
+}
+/* A tab answers at once; the shared pressed tone would only flash a box. */
+.tab:active:not(:disabled) {
+  background: transparent;
+}
+.tab.active,
+/* button:hover (0,2,1) outranks .tab.active (0,2,0); keep the tab lit, and its
+   hover must not paint the shared stronger border as an underline either. */
+.tab.active:hover {
+  border-bottom-color: transparent;
+  color: var(--ink);
+  font-weight: var(--w-strong);
+}
+/* The label's room is on every tab, so opening one never moves the strip. */
+.tab-label {
+  padding: 0 6px;
+}
+.tab.active .tab-label {
+  background: linear-gradient(
+    transparent 22%,
+    var(--mark) 22%,
+    var(--mark) 90%,
+    transparent 90%
+  );
+}
+
+.view {
+  display: grid;
+  gap: var(--gap-section);
+  align-content: start;
+}
+/* One rhythm inside every section, so no block has to carry a margin of its
+   own: nothing in a view may set a vertical margin. */
+.view > section {
+  position: relative;
+  display: grid;
+  gap: var(--gap-block);
+  align-content: start;
+}
+/* Sections are flat on the canvas and told apart by one hairline, centred in
+   the gap above every visible section but the first (a hidden first-run card
+   leaves no stray rule behind). */
+.view > section:not([hidden]) ~ section:not([hidden])::before,
+footer::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--gap-section) / -2);
+  right: 0;
+  left: 0;
+  border-top: 1px solid var(--line);
+}
+/* The first-run card is a bordered panel already. */
+.view > .first-run:not([hidden]) + section::before {
+  content: none;
+}
+/* Nothing in a view may widen the pane: a section wider than the pane would
+   drag the tab strip past the edge with it. */
+.view,
+.view > section {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--gap-tight);
+  min-width: 0;
+}
+.section-heading.compact {
+  align-items: center;
+}
+.section-heading > div {
+  min-width: 0;
+}
+
+/* The "New here?" card src/ui/first-run.ts shows or hides: the one bordered
+   panel on the canvas, on the same tokens as help.css's card so it never
+   needs its own colour or radius. Excel's version is a full section with two
+   buttons in an .io-row; PowerPoint's is a div nested in the Inbox section
+   with one lone button, styled here as a direct child. */
+.first-run {
+  display: grid;
+  gap: var(--gap-tight);
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-row);
+  background: var(--paper);
+}
+.first-run p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: var(--fs-body);
+  line-height: 1.4;
+}
+/* The two tips under the checklist: a hairline above them and the lead word in
+   ink, so they read as asides to the four steps, not as steps five and six. */
+.first-run-tips {
+  display: grid;
+  gap: var(--gap-tight);
+  margin: 0;
+  padding: var(--gap-tight) 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+.first-run-tips li {
+  color: var(--ink-2);
+  font-size: var(--fs-body);
+  line-height: 1.4;
+}
+.first-run-tips strong {
+  color: var(--ink);
+  font-weight: var(--w-strong);
+}
+.first-run > button {
+  min-height: var(--control-h);
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+
+footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+}
+footer span:last-child {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+.privacy-dot {
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+  background: var(--ok);
+}
+
+.toast {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-row);
+  color: var(--paper);
+  background: var(--ink);
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+  line-height: 1.35;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition:
+    opacity 0.18s,
+    transform 0.18s;
+}
+.toast-text {
+  flex: 1;
+}
+.toast.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Same ink for every kind; a failure carries a red rule on its left edge. */
+.toast.error {
+  border-left: 3px solid var(--bad);
+}
+/* An error has no timer: it waits for the next action or a click on it, so it
+   takes clicks itself (every other message stays click-through) and says so
+   with the cursor. */
+.toast.error.visible {
+  pointer-events: auto;
+  cursor: pointer;
+}
+.toast-copy {
+  flex: none;
+  min-height: var(--control-h);
+  padding: 5px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
+  color: inherit;
+  background: transparent;
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+  white-space: nowrap;
+  cursor: pointer;
+}
+/* Scoped to the button, not the whole .toast.visible bar: the fixed toast
+   spans the pane width and can sit over real controls (e.g. "Delete broken
+   names" above the footer) - only the copy button should intercept clicks
+   while a toast is showing; the rest of the bar stays click-through. */
+.toast.visible .toast-copy {
+  pointer-events: auto;
+}
+.toast-copy:hover:not(:disabled) {
+  border-color: var(--paper);
+}
+/* A question holds its words on a row of their own and its answers below:
+   side by side where they fit, one under the other in a narrow dock. */
+.toast.asking {
+  flex-wrap: wrap;
+}
+.toast.asking .toast-text {
+  flex: 1 1 100%;
+}
+.toast.asking .toast-copy {
+  flex: 1 1 auto;
+  white-space: normal;
+}
+/* The shared ring is blue on paper; on the toast's ink it would vanish. */
+.toast-copy:focus-visible {
+  outline-color: var(--paper);
+}
+
+@media (max-width: 330px) {
+  .app-shell {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+}
+
+/* The connection badge is the only place either pane says the host was
+   rejected, so a dock too narrow to fit it beside the title moves it under
+   the header rather than hiding it. The title (wordmark and the muted line)
+   plus the longest ordinary badge ("PowerPoint connected") need about 340px
+   of shell; 420px leaves room for the dot and the pane's own padding. */
+@media (max-width: 420px) {
+  .masthead {
+    grid-template-columns: 28px minmax(0, 1fr);
+    row-gap: 8px;
+  }
+  .connection {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
+
+/* Only the toast moves, and it stops for anyone who asked it to. */
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transition: none;
+  }
+}

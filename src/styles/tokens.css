@@ -1,0 +1,198 @@
+/* The pane's design tokens and the two resets every other sheet leans on: the
+   palette (the ONLY sheet with a colour value), the type scale, the rhythm, the
+   radii and the control height. Nothing here draws a component. Invariant: the
+   [hidden] reset stays the first rule, or .view's display would beat it. */
+
+[hidden] {
+  display: none !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colour, 6 base values: near-black ink for text, primary fills and the
+     mark's glyph; two warm greys of ink for secondary text; paper for controls
+     and rows over a flat warm canvas, with a sunken tone for read-only boxes. */
+  --ink: #111111;
+  --ink-2: #575752;
+  --muted: #6e6e68;
+  --paper: #ffffff;
+  --canvas: #f7f7f2;
+  --sunken: #f1f1eb;
+  --line: #e4e4dc;
+  --line-strong: #bdbdb2;
+  /* Lime is the marker pen and a FILL colour only: the band behind "fix" and
+     behind the open tab's label, the mark's tile, and (as words) the primary
+     button's lettering on ink. On paper or the canvas it is 1.2:1, so it never
+     carries text or a thin line there: only ink sits on lime (15:1), and lime
+     words only sit on ink. --mark-ink is the same hue dark enough to be text
+     (7.5:1 on paper) for the rare place an accent must be words. */
+  --mark: #d9f24a;
+  --mark-ink: #4d5b00;
+  /* Semantic: a state dot or a word, never a fill. --link is the focus ring
+     and hyperlinks only. --muted is 4.8:1 on the canvas and 4.5:1 on sunken, so
+     small text there reads in --ink-2; --muted keeps placeholders, disabled
+     text and the idle dot. */
+  --ok: #1f7a4d;
+  --bad: #b3261e;
+  --warn: #9a6700;
+  --link: #2b55b5;
+
+  /* The names the sheets read before the redesign, kept on the palette so a
+     stray reference never needs renaming; the sheets themselves now say --ok
+     and --bad. The brass names are gone: lime is --mark, nothing aliases it. */
+  --green: var(--ok);
+  --red: var(--bad);
+  --surface: var(--paper);
+  --surface-hover: var(--paper);
+  --surface-sunken: var(--sunken);
+
+  /* The colour convention the model tools paint with (blue typed numbers,
+     black formulas, green cross-sheet links): the icons that show it. */
+  --model-input: #0057b8;
+  --model-formula: #1f1d1b;
+  --model-link: #17823b;
+
+  /* The Brand tab's live preview is the user's workbook palette, not the pane
+     chrome: these are the shipped defaults of src/settings.ts (ink and olive,
+     derived by deriveTheme), overwritten on the preview table by
+     src/pane/brand-tab.ts at every render. tokens.test.ts holds them equal. */
+  --pv-title-fill: #111111;
+  --pv-title-text: #ffffff;
+  --pv-header-fill: #ececec;
+  --pv-header-border: #949494;
+  --pv-input: var(--model-input);
+  --pv-formula: var(--model-formula);
+  --pv-link: var(--model-link);
+  --pv-external: #c00000;
+  --pv-partial: #7a3e9d;
+  --pv-result-fill: #ebedde;
+  --pv-result-border: #525f0e;
+
+  color: var(--ink);
+  background: var(--canvas);
+  font-family: var(--font);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  /* Type: one family everywhere, two weights. Micro (eyebrows, badges, table
+     meta), body (controls, descriptions, cells), title (row headings), lead
+     (h2), display (the top of the scale; the pane headline is body-sized). */
+  --font: "Aptos", "Segoe UI", system-ui, sans-serif;
+  --mono:
+    ui-monospace, SFMono-Regular, Menlo, "Cascadia Mono", Consolas, monospace;
+  --w-regular: 400;
+  --w-strong: 600;
+  --fs-micro: 11px;
+  --fs-body: 12px;
+  --fs-title: 13px;
+  --fs-lead: 15px;
+  --fs-display: 18px;
+
+  /* Rhythm: items inside one group, blocks inside a section, section to
+     section. Nothing in the panes may invent a fourth vertical gap. */
+  --gap-tight: 8px;
+  --gap-block: 10px;
+  --gap-section: 24px;
+
+  /* One height for every text control and icon button, one tick size for
+     every checkbox, two radii: a control, and a list row or panel. Nothing is
+     rounder than that. */
+  --control-h: 34px;
+  /* A brand color swatch: one tap target tall (the UX gate's 32 px floor), and
+     the word that leads each swatch row. */
+  --swatch-h: 32px;
+  --swatch-label-w: 44px;
+  --swatch-none-w: 44px;
+  /* The looks of a swatch (swatches.ts): the bar under a Font or Text A, and
+     the thickness of an Outline ring. */
+  --swatch-bar-h: 4px;
+  --swatch-ring-w: 3px;
+  /* How many color columns a strip has: the script sets it on each strip. */
+  --swatch-count: 1;
+  --tick: 16px;
+  /* Icon glyphs are drawn, not read: they keep their own size, and the
+     autocolor dot's text-shadow offsets are tuned to it. */
+  --icon-glyph: 16px;
+  --radius-control: 4px;
+  --radius-row: 6px;
+  /* The state dot of a connection badge, a status word or a sheet badge. */
+  --dot: 6px;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  min-width: 0;
+  min-height: 100vh;
+  background: var(--canvas);
+}
+
+/* Office docks the pane inside a resizable host view. Let the shell, not the
+   document, own scrolling so a wide table, long token or an animation can
+   never shift the entire side bar sideways or leave it stranded off screen. */
+.app-shell {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.app-shell > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Labels remain available to screen readers while compact controls can use
+   their placeholder or selected value without spending horizontal space. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+h1,
+h2 {
+  margin: 0;
+  color: var(--ink);
+}
+h2 {
+  font-size: var(--fs-lead);
+  font-weight: var(--w-strong);
+  line-height: 1.2;
+}
+strong {
+  font-weight: var(--w-strong);
+}
+
+/* The group a section belongs to, said quietly above its heading. */
+.kicker {
+  margin: 0 0 2px;
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+  font-weight: var(--w-regular);
+}
+
+.hint {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: var(--fs-body);
+  line-height: 1.4;
+}

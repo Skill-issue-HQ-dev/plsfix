@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>pls,fix</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="masthead">
+        <svg
+          class="brand-mark"
+          viewBox="0 0 64 64"
+          width="28"
+          height="28"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <rect class="mark-tile" width="64" height="64" rx="14" />
+          <path
+            class="mark-glyph"
+            fill-rule="evenodd"
+            d="M13.1 16.2H21.3V17.32A13.6 13.6 0 1 1 21.3 42.28V54.2H13.1ZM21.3 29.8a6.1 6.1 0 1 0 12.2 0a6.1 6.1 0 1 0 -12.2 0Z"
+          />
+          <path
+            class="mark-glyph"
+            d="M42.9 38.7a5.2 5.2 0 1 1 10.4 0a5.2 5.2 0 1 1 -10.4 0ZM53.09 39.22C53.4 45.2 49.97 49.41 44.36 51.91L43.73 50.45C47.37 48.48 48.93 45.77 48.72 42.55Z"
+          />
+        </svg>
+        <div class="masthead-title">
+          <div class="wordmark">pls,<span class="hl">fix</span></div>
+          <h1>Linked objects.</h1>
+        </div>
+        <span id="connection-status" class="connection waiting"
+          >Connecting</span
+        >
+      </header>
+
+      <nav
+        id="tab-bar"
+        class="tab-bar"
+        role="tablist"
+        aria-label="Task pane views"
+      >
+        <button
+          id="tab-links"
+          class="tab active"
+          role="tab"
+          aria-selected="true"
+          aria-controls="view-links"
+          type="button"
+        >
+          <span class="tab-label">Links</span>
+        </button>
+        <button
+          id="tab-inbox"
+          class="tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="view-inbox"
+          type="button"
+        >
+          <span class="tab-label">Inbox</span>
+        </button>
+        <button
+          id="tab-tools"
+          class="tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="view-tools"
+          type="button"
+        >
+          <span class="tab-label">Tools</span>
+        </button>
+        <button
+          id="tab-settings"
+          class="tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="view-settings"
+          type="button"
+        >
+          <span class="tab-label">Settings</span>
+        </button>
+      </nav>
+
+      <div
+        id="view-links"
+        class="view"
+        role="tabpanel"
+        aria-labelledby="tab-links"
+      >
+        <section aria-labelledby="links-heading" data-help="deck-links">
+          <div class="section-heading compact">
+            <div>
+              <p class="kicker">This deck</p>
+              <h2 id="links-heading">Linked objects</h2>
+            </div>
+            <button
+              id="refresh-links"
+              class="icon-button"
+              type="button"
+              aria-label="Refresh the link list"
+              title="Refresh"
+            >
+              ↻
+            </button>
+          </div>
+
+          <div class="link-actions" role="group" aria-label="Link actions">
+            <button
+              id="update-selected"
+              type="button"
+              title="Update every ticked link"
+            >
+              Update selected
+            </button>
+            <button
+              id="update-slide"
+              type="button"
+              title="Update every link on the active slide"
+            >
+              Update this slide
+            </button>
+            <button
+              id="update-all"
+              type="button"
+              title="Update every link the filters show"
+            >
+              Update all
+            </button>
+            <button
+              id="revert-selected"
+              type="button"
+              title="Put every ticked link back to the update before this one"
+            >
+              Revert last update
+            </button>
+            <button
+              id="go-to-slide"
+              type="button"
+              title="Go to the slide of the first ticked link"
+            >
+              Go to slide
+            </button>
+            <button
+              id="change-source"
+              type="button"
+              title="Point the ticked link at another export waiting in the Inbox"
+              disabled
+            >
+              Change source
+            </button>
+            <button
+              id="deck-redraw"
+              type="button"
+              title="Draw the ticked links again from the copy this deck keeps, without Excel"
+            >
+              Redraw from this deck
+            </button>
+          </div>
+
+          <div class="link-filters" role="search" aria-label="Filter links">
+            <label class="sr-only" for="link-search">Search links</label>
+            <input
+              id="link-search"
+              type="search"
+              placeholder="Search slide, object or workbook"
+              autocomplete="off"
+            />
+            <label class="sr-only" for="link-source-filter"
+              >Source workbook</label
+            >
+            <select id="link-source-filter">
+              <option value="all">All sources</option>
+            </select>
+            <label class="sr-only" for="link-project-filter">Project</label>
+            <select id="link-project-filter">
+              <option value="all">All projects</option>
+              <option value="">No project</option>
+            </select>
+            <label class="sr-only" for="link-slide-filter">Slide</label>
+            <select id="link-slide-filter">
+              <option value="all">All slides</option>
+            </select>
+            <label class="sr-only" for="link-status-filter">Link status</label>
+            <select id="link-status-filter">
+              <option value="all">All statuses</option>
+              <option value="updateAvailable">Update available</option>
+              <option value="missing">Source missing</option>
+              <option value="wrongKey">Wrong link key</option>
+              <option value="notPasted">Not pasted yet</option>
+              <option value="inDeck">In this deck</option>
+              <option value="current">Up to date</option>
+            </select>
+          </div>
+
+          <div id="change-source-chooser" class="source-chooser" hidden>
+            <label class="key-label" for="change-source-list">
+              Point this link at
+              <select id="change-source-list"></select>
+            </label>
+            <div class="io-row">
+              <button id="change-source-confirm" type="button">Confirm</button>
+              <button id="change-source-cancel" type="button">Cancel</button>
+            </div>
+            <p class="hint">
+              The picture keeps its slide, position and size. The export it
+              points at now stays in Excel, unchanged.
+            </p>
+          </div>
+
+          <table class="link-table">
+            <thead>
+              <tr>
+                <th scope="col" aria-label="Select"></th>
+                <th scope="col">Slide</th>
+                <th scope="col">Object</th>
+                <th scope="col">Status</th>
+                <th scope="col">Sent</th>
+              </tr>
+            </thead>
+            <tbody id="link-rows"></tbody>
+          </table>
+          <p class="hint" id="links-empty">
+            No linked objects in this deck yet. Insert one from the Inbox.
+          </p>
+          <p class="hint" id="links-filtered-empty" hidden>
+            No links match this filter. Your selected links are kept.
+          </p>
+
+          <button id="break-selected" class="danger" type="button">
+            Break link
+          </button>
+          <p class="hint" id="ppt-privacy-relay" data-shown-in="relay">
+            Anyone holding this deck can pull a linked picture for 30 days.
+            Break links before sending a deck outside.
+          </p>
+          <p class="hint" id="ppt-privacy-local" data-shown-in="local" hidden>
+            Link data stays in this workbook, the deck and this computer.
+            Nothing is kept on a server.
+          </p>
+        </section>
+      </div>
+
+      <div
+        id="view-tools"
+        class="view"
+        role="tabpanel"
+        aria-labelledby="tab-tools"
+        hidden
+      >
+        <section
+          aria-labelledby="ppt-swatches-heading"
+          data-help="ppt-swatches"
+        >
+          <div class="section-heading compact">
+            <div>
+              <p class="kicker">One click</p>
+              <h2 id="ppt-swatches-heading">Brand colors</h2>
+            </div>
+            <button id="edit-brand-colors" class="link-action" type="button">
+              Edit colors
+            </button>
+          </div>
+          <div id="ppt-brand-swatches"></div>
+        </section>
+
+        <section aria-labelledby="object-tools-heading">
+          <div class="section-heading compact">
+            <div>
+              <p class="kicker">Current selection</p>
+              <h2 id="object-tools-heading">Object tools</h2>
+            </div>
+          </div>
+
+          <div class="object-action-row">
+            <label for="object-align-mode">Align</label>
+            <select id="object-align-mode">
+              <option value="left">Left</option>
+              <option value="center">Centre</option>
+              <option value="right">Right</option>
+              <option value="top">Top</option>
+              <option value="middle">Middle</option>
+              <option value="bottom">Bottom</option>
+            </select>
+            <button id="align-objects" type="button">Apply</button>
+          </div>
+
+          <div class="object-action-row">
+            <label for="object-distribute-axis">Distribute</label>
+            <select id="object-distribute-axis">
+              <option value="horizontal">Across</option>
+              <option value="vertical">Down</option>
+            </select>
+            <button id="distribute-objects" type="button">Apply</button>
+          </div>
+
+          <div class="object-tools-grid">
+            <button id="match-size" type="button">Match size</button>
+            <button id="select-similar" type="button">Select similar</button>
+            <button id="swap-objects" type="button">Swap</button>
+          </div>
+          <p class="hint">
+            Match Size uses the first selected object. Swap needs exactly two.
+            Select Similar matches type and size on this slide.
+          </p>
+        </section>
+
+        <section aria-labelledby="smart-painter-heading">
+          <div class="section-heading compact">
+            <div>
+              <p class="kicker">Fill, outline and text</p>
+              <h2 id="smart-painter-heading">Smart Painter</h2>
+            </div>
+          </div>
+          <div class="object-tools-grid painter-grid">
+            <button id="capture-object-style" type="button">Capture</button>
+            <button id="apply-object-style" type="button">Apply</button>
+          </div>
+          <p class="hint">
+            Capture one solid object, select the targets, then Apply. The text
+            look comes along.
+          </p>
+        </section>
+
+        <section
+          aria-labelledby="shape-styles-heading"
+          data-help="shape-styles"
+        >
+          <div class="section-heading compact">
+            <div>
+              <p class="kicker">Your styles</p>
+              <h2 id="shape-styles-heading">Shape styles</h2>
+            </div>
+          </div>
+          <div class="style-save-row">
+            <input
+              id="shape-style-name"
+              class="style-name-field"
+              type="text"
+              maxlength="40"
+              placeholder="Style name"
+              aria-label="Style name"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button
+              id="save-shape-style"
+              type="button"
+              title="Save the selected shape's fill, outline and text look as a named style"
+            >
+              Save style
+            </button>
+          </div>
+          <ul
+            id="shape-style-list"
+            class="custom-style-list"
+            aria-label="Your shape styles"
+            hidden
+          ></ul>
+          <p id="shape-style-empty" class="hint" role="status">
+            No shape styles saved yet.
+          </p>
+          <button
+            id="shape-style-starters"
+            class="style-starter"
+            type="button"
+            title="Add six starter styles in your brand colors, or restyle them after the palette changed"
+          >
+            Starter styles from palette
+          </button>
+        </section>
+      </div>
+
+      <div
+        id="view-inbox"
+        class="view"
+        role="tabpanel"
+        aria-labelledby="tab-inbox"
+        hidden
+      >
+        <section aria-labelledby="inbox-heading">
+          <div id="first-run-ppt" class="first-run">
+            <h2>New here?</h2>
+            <p data-shown-in="relay">
+              1. Paste the link key from Excel &gt; Links &gt; Link key once.
+            </p>
+            <p data-shown-in="relay">
+              2. Insert what Excel exported; Update all repaints it later.
+            </p>
+            <p data-shown-in="local" hidden>
+              1. In Excel: Links &gt; Export selection (it copies for
+              PowerPoint).
+            </p>
+            <p data-shown-in="local" hidden>
+              2. Here: click the box, press Ctrl+V, then Insert.
+            </p>
+            <p data-shown-in="local" hidden>
+              3. Numbers changed? In Excel press Copy all and paste here again.
+            </p>
+            <button id="first-run-ppt-dismiss" type="button">Got it</button>
+          </div>
+          <div class="section-heading compact">
+            <div>
+              <p class="kicker">Sent from Excel</p>
+              <h2 id="inbox-heading">Waiting to insert</h2>
+            </div>
+            <button
+              id="refresh-inbox"
+              class="icon-button"
+              type="button"
+              aria-label="Refresh the inbox"
+              title="Refresh"
+            >
+              ↻
+            </button>
+          </div>
+          <div id="paste-links-area" hidden>
+            <label class="paste-label" for="paste-links"
+              >Paste from Excel</label
+            >
+            <textarea
+              id="paste-links"
+              class="paste-box"
+              rows="2"
+              spellcheck="false"
+              placeholder="Click here, then Ctrl+V (⌘V on a Mac)"
+            ></textarea>
+            <button id="clear-pasted-links" type="button">
+              Clear pasted links
+            </button>
+            <p class="hint" id="paste-not-durable" hidden>
+              This computer does not keep pasted links between sessions: paste
+              again after reopening the pane.
+            </p>
+          </div>
+          <div class="object-action-row insert-target-row">
+            <label for="insert-slide">Slide</label>
+            <select id="insert-slide">
+              <option value="">This slide</option>
+            </select>
+          </div>
+          <div class="object-action-row insert-target-row">
+            <label for="insert-where">Where</label>
+            <select id="insert-where">
+              <option value="free">Free space</option>
+              <option value="selected-shape">Selected shape</option>
+              <option value="left-half">Left half</option>
+              <option value="right-half">Right half</option>
+              <option value="top-left">Top left</option>
+              <option value="top-right">Top right</option>
+              <option value="bottom-left">Bottom left</option>
+              <option value="bottom-right">Bottom right</option>
+              <option value="whole">Whole slide</option>
+            </select>
+          </div>
+          <button id="paste-latest-linked" class="paste-latest" type="button">
+            Paste latest linked
+          </button>
+          <div class="inbox-list" id="inbox-list"></div>
+          <p class="hint" id="inbox-unpaired" hidden>
+            Not paired: paste the link key from Excel &gt; Links &gt; Link key.
+          </p>
+          <p class="hint">
+            Paste latest linked inserts the newest Excel export at the picked
+            slide and spot. Pick the slide and the spot first, or leave This
+            slide and Free space. Items expire 7 days after they are pushed.
+          </p>
+        </section>
+      </div>
+
+      <div
+        id="view-settings"
+        class="view"
+        role="tabpanel"
+        aria-labelledby="tab-settings"
+        hidden
+      >
+        <section aria-labelledby="ppt-brand-heading" data-help="ppt-brand">
+          <div class="section-heading compact">
+            <div>
+              <p class="kicker">This deck</p>
+              <h2 id="ppt-brand-heading">Brand colors</h2>
+            </div>
+          </div>
+          <div id="ppt-brand-editor"></div>
+          <div class="object-tools-grid painter-grid">
+            <button
+              id="use-workbook-colors"
+              type="button"
+              title="Take the brand colors of the last copy pasted from Excel"
+              data-dead
+              disabled
+            >
+              Use the workbook's colors
+            </button>
+            <button
+              id="use-deck-theme-colors"
+              type="button"
+              title="Read Accent 1 to 6 of this deck's theme into the brand colors"
+            >
+              Use this deck's theme colors
+            </button>
+            <button
+              id="put-theme-colors"
+              type="button"
+              title="Write the brand colors into Accent 1 to 6 of the deck theme"
+            >
+              Put in the deck theme
+            </button>
+            <button
+              id="restore-theme-colors"
+              type="button"
+              title="Put the theme colors this deck had before back"
+              data-dead
+              disabled
+            >
+              Restore theme colors
+            </button>
+          </div>
+          <p class="hint" id="ppt-brand-copy-hint" data-shown-in="local" hidden>
+            Excel colors arrive with a copy: Excel &gt; Links &gt; Copy all,
+            paste on the Inbox tab. Or paste hex codes above.
+          </p>
+          <p class="hint" id="ppt-theme-hint">
+            Put in the deck theme fills Accent 1 to 6, so PowerPoint's own color
+            picker offers your brand. Restore puts the old colors back.
+          </p>
+        </section>
+
+        <section aria-labelledby="pairing-heading" data-offers-relay>
+          <div class="section-heading compact">
+            <div>
+              <p class="kicker">Pairing</p>
+              <h2 id="pairing-heading">Link key</h2>
+            </div>
+          </div>
+          <label class="key-label" for="link-transport">
+            How links reach PowerPoint
+            <select id="link-transport">
+              <option value="local">Copy and paste on this computer</option>
+              <option value="relay">Through the relay</option>
+            </select>
+          </label>
+          <div id="link-key-controls">
+            <label class="key-label" for="workspace-key">
+              Paste the link key
+              <input
+                id="workspace-key"
+                class="key-input"
+                type="text"
+                spellcheck="false"
+                autocomplete="off"
+                placeholder="Excel &gt; Links &gt; Link key &gt; Copy"
+              />
+            </label>
+            <div class="io-row">
+              <button id="save-key" type="button">Save key</button>
+              <button id="forget-key" type="button">Forget key</button>
+            </div>
+            <p class="hint">
+              The key stays on this computer and opens the inbox items your team
+              pushes from Excel. The relay never sees it.
+            </p>
+          </div>
+          <p class="hint" id="workspace-state">
+            Not paired: paste the link key from Excel &gt; Links &gt; Link key
+          </p>
+        </section>
+      </div>
+
+      <footer>
+        <span class="privacy-dot"></span>
+        Linked objects stay inside PowerPoint
+        <span id="app-version"></span>
+      </footer>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/src/ppt/main.ts"></script>
+  </body>
+</html>

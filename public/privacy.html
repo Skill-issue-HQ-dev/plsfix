@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pls,fix privacy</title>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 32px 20px 64px;
+        color: #111111;
+        background: #ffffff;
+        font-family: "Aptos", "Segoe UI", system-ui, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      main {
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      header {
+        margin-bottom: 28px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #e4e4dc;
+      }
+      .mark {
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        margin-right: 10px;
+        vertical-align: -5px;
+      }
+      .mark .sq {
+        fill: #d9f24a;
+      }
+      .mark .cm {
+        fill: #111111;
+      }
+      .hl {
+        padding: 0 3px;
+        background: linear-gradient(
+          transparent 30%,
+          #d9f24a 30%,
+          #d9f24a 92%,
+          transparent 92%
+        );
+      }
+      h1 {
+        margin: 0 0 6px;
+        font-size: 26px;
+        font-weight: 600;
+      }
+      .tagline {
+        margin: 0;
+        color: #575752;
+        font-size: 15px;
+      }
+      h2 {
+        margin: 32px 0 10px;
+        padding-top: 24px;
+        border-top: 1px solid #e4e4dc;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      header + h2 {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+      }
+      p {
+        margin: 10px 0;
+      }
+      ul {
+        margin: 10px 0;
+        padding-left: 22px;
+      }
+      li {
+        margin: 6px 0;
+      }
+      a {
+        color: #2b55b5;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 2px;
+      }
+      code {
+        font:
+          600 0.88em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        background: #f1f1eb;
+        border-radius: 4px;
+        padding: 1px 5px;
+        word-break: break-word;
+      }
+      .box {
+        margin: 14px 0;
+        padding: 14px 16px;
+        background: #f7f7f2;
+        border: 1px solid #e4e4dc;
+        border-radius: 6px;
+      }
+      footer {
+        margin-top: 48px;
+        padding-top: 16px;
+        border-top: 1px solid #e4e4dc;
+        color: #575752;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>
+          <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect class="sq" width="64" height="64" rx="14"/><path class="cm" fill-rule="evenodd" d="M13.1 16.2H21.3V17.32A13.6 13.6 0 1 1 21.3 42.28V54.2H13.1ZM21.3 29.8a6.1 6.1 0 1 0 12.2 0a6.1 6.1 0 1 0 -12.2 0Z"/><path class="cm" d="M42.9 38.7a5.2 5.2 0 1 1 10.4 0a5.2 5.2 0 1 1 -10.4 0ZM53.09 39.22C53.4 45.2 49.97 49.41 44.36 51.91L43.73 50.45C47.37 48.48 48.93 45.77 48.72 42.55Z"/></svg>pls,<span class="hl">fix</span> privacy
+        </h1>
+        <p class="tagline">
+          What the add-in stores, where, and for how long.
+        </p>
+      </header>
+
+      <h2>Linked objects through a relay (hosted builds only)</h2>
+      <p>
+        The pls,fix from GitHub has no relay: its links always move by copy
+        and paste on your computer (below). A build hosted on its own server
+        can also send them through an encrypted relay. Sending a range,
+        table, chart or cell from Excel to PowerPoint that way
+        encrypts it in the Excel pane first (AES-GCM, with keys derived from
+        a per-link token that lives only in the workbook's own registry and
+        in the tags on the PowerPoint shape). The relay server stores that
+        ciphertext plus a one-way hash of the access key
+        (<code>sha256(authKey)</code>) - never the plaintext content, a file
+        name, a workbook name or a person's name. PowerPoint downloads the
+        ciphertext and decrypts it in its own pane.
+      </p>
+      <div class="box">
+        <p style="margin: 0">
+          A link is kept for 30 days after its last update; a PowerPoint
+          inbox item (an export waiting to be pasted in) for 7 days. After
+          that it is deleted on the next hourly sweep.
+        </p>
+      </div>
+
+      <h2>Local mode (no relay)</h2>
+      <p>
+        With <strong>Copy and paste on this computer</strong> (the only way
+        in the pls,fix from GitHub, the default everywhere), nothing is sent
+        anywhere: Excel copies a link to the
+        clipboard instead of uploading it, and PowerPoint reads it back
+        from what you paste. Pasted links are kept in this browser's own
+        IndexedDB (<code>plsfix-links</code>) until you press
+        <strong>Clear pasted links</strong>, or the oldest ones are dropped
+        once that store passes 32 MB.
+      </p>
+      <div class="box">
+        <p style="margin: 0">
+          A copied bundle carries the same live link tokens as the picture
+          it came from: paste it into PowerPoint, do not forward it on.
+        </p>
+      </div>
+
+      <h2>What Excel and PowerPoint save on the computer</h2>
+      <p>
+        A few settings ride with the workbook itself, in Excel's own
+        <code>workbook.settings</code>, so they travel with the file:
+      </p>
+      <ul>
+        <li><code>plsfix.brand.v1</code> - the brand palette, fonts and currency style</li>
+        <li><code>PLSFIX_PAINT_SLOTS_V1</code> - the three captured format-paint slots</li>
+        <li><code>PLSFIX_AUTOPUSH</code> - whether an edit re-sends its linked objects automatically</li>
+        <li><code>PLSFIX_LINK_HIGHLIGHT</code> - whether linked ranges are tinted on screen</li>
+        <li><code>smtAuditOverlay</code> - which cells the model-audit stripes currently cover</li>
+        <li><code>PLSFIX_LINKS</code> - the workbook's own registry of what it has linked out</li>
+      </ul>
+      <p>
+        A handful of small values are kept on the machine instead (Office's
+        own storage, or the browser's <code>localStorage</code> when that is
+        all a host offers):
+      </p>
+      <ul>
+        <li><code>plsfix.link.workspace.v1</code> - the pairing key an Excel workbook and a PowerPoint deck share, so an exported item opens only on a paired pane</li>
+        <li><code>plsfix.brand.v1</code> - the same palette, as a fallback for a workbook that has not saved its own yet</li>
+        <li><code>plsfix.paint.v1</code> - the same paint slots, for the same reason</li>
+        <li><code>plsfix.firstRun.v1</code> / <code>plsfix.firstRun.ppt.v1</code> - whether the "New here?" card has already been dismissed on this machine</li>
+      </ul>
+
+      <h2>What pls,fix does not do</h2>
+      <p>
+        No telemetry, no analytics, no cookies. The only network requests the
+        panes make are to load themselves and, in a hosted build that uses
+        it, to the relay above; nothing is sent to a third party.
+      </p>
+
+      <footer>
+        <p>
+          Questions about this page go to the pls,fix owner; see
+          <a href="support.html">pls,fix support</a> for how to reach them.
+          Releases: <a href="https://github.com/Skill-issue-HQ-dev/plsfix">github.com/Skill-issue-HQ-dev/plsfix</a>.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

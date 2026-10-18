@@ -1,0 +1,383 @@
+/* The PowerPoint pane only: the link toolbar, the deck's link table and its
+   status words, the inbox and the "Change source" picker. Owns the link
+   table's folder headers and column widths at each breakpoint (the primary
+   Paste latest linked look is in controls.css). */
+
+.link-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-tight);
+}
+.link-actions button {
+  min-height: var(--control-h);
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+
+.paste-latest {
+  min-height: var(--control-h);
+}
+
+.object-action-row {
+  display: grid;
+  grid-template-columns: 66px minmax(0, 1fr) auto;
+  gap: var(--gap-tight);
+  align-items: center;
+  min-width: 0;
+}
+.object-action-row label {
+  color: var(--ink-2);
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+}
+.object-action-row select,
+.object-action-row button,
+.object-tools-grid button {
+  min-width: 0;
+  min-height: var(--control-h);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+}
+.object-action-row select {
+  width: 100%;
+  padding: 4px 7px;
+  font-family: var(--font);
+  font-weight: var(--w-regular);
+}
+.object-action-row button,
+.object-tools-grid button {
+  padding: 4px 10px;
+  cursor: pointer;
+}
+/* The inbox's Slide/Where pickers: object-action-row's label and select
+   styling, but the select is the row's last column - there is no per-row
+   button here, only Insert. */
+.insert-target-row {
+  grid-template-columns: 66px minmax(0, 1fr);
+}
+.object-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap-tight);
+}
+.painter-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 340px) {
+  .object-tools-grid:not(.painter-grid) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.link-filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap-tight);
+  min-width: 0;
+}
+.link-filters input,
+.link-filters select {
+  min-width: 0;
+  height: var(--control-h);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font: var(--w-regular) var(--fs-body) var(--font);
+}
+.link-filters input:hover,
+.link-filters select:hover {
+  border-color: var(--line-strong);
+}
+.link-filters input {
+  grid-column: 1 / -1;
+  width: 100%;
+  padding: 4px 9px;
+}
+.link-filters select {
+  width: 100%;
+  max-width: none;
+  padding: 4px 6px;
+}
+
+@media (max-width: 360px) {
+  .link-filters {
+    grid-template-columns: 1fr 1fr;
+  }
+  .link-filters select:last-of-type {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Fixed layout, so these widths rule: the tick, the slide number, the status
+   and the age get exactly what they need and the object name takes the rest -
+   ellipsised, with the full text in its title. The workbook and kind ride
+   under the name as a second line (.link-meta), ellipsised the same way. */
+.link-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: var(--fs-body);
+}
+.link-table th {
+  overflow: hidden;
+  padding: 0 3px 5px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+  font-weight: var(--w-strong);
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.link-table td {
+  overflow: hidden;
+  padding: 7px 3px;
+  border-bottom: 1px solid var(--line);
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.link-table th:first-child,
+.link-select {
+  width: 24px;
+  padding-left: 0;
+}
+/* The cells clip so names ellipsise; the tick's cell must not, or the focus
+   ring around the checkbox would be cut off with them. */
+.link-select {
+  overflow: visible;
+}
+.link-table th:nth-child(2) {
+  width: 42px;
+}
+.link-table th:nth-child(4) {
+  width: 74px;
+}
+.link-table th:nth-child(5) {
+  width: 64px;
+}
+.link-select input {
+  display: block;
+  width: var(--tick);
+  height: var(--tick);
+  margin: 0;
+  accent-color: var(--ink);
+}
+.link-slide {
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+.link-label {
+  font-weight: var(--w-strong);
+}
+.link-folder td {
+  padding: 10px 3px 4px;
+  border-bottom: 0;
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+  font-weight: var(--w-strong);
+}
+.link-meta {
+  display: block;
+  overflow: hidden;
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+  font-weight: var(--w-regular);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* Why a Not on a slide row cannot be put back: a line of its own, wrapped
+   rather than cut like the source line above it. */
+.link-meta.link-dead {
+  white-space: normal;
+}
+.link-table td.link-updated {
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+  font-variant-numeric: tabular-nums;
+  white-space: normal;
+}
+/* A record the deck holds for an object no slide carries: its two buttons sit
+   under the name and wrap onto a second line in a narrow pane, rather than
+   being clipped like the name beside them. */
+.deck-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-tight);
+  margin-top: 4px;
+  white-space: normal;
+}
+.deck-row-action {
+  min-height: var(--control-h);
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: var(--fs-micro);
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+/* Below the width that fits "Update available" on one line the badge wraps
+   inside its column rather than being cut to "Upda...". */
+.link-status,
+.link-status .badge {
+  white-space: normal;
+}
+/* "data from 02.10 14:02" under In this deck wraps in the column, never cut. */
+.link-status .link-meta {
+  white-space: normal;
+}
+
+@media (min-width: 460px) {
+  .link-table th:nth-child(4) {
+    width: 112px;
+  }
+  .link-table th:nth-child(5) {
+    width: 72px;
+  }
+  .link-table td.link-updated,
+  .link-status,
+  .link-status .badge {
+    white-space: nowrap;
+  }
+  /* "Update available" and "Not on the relay" are the longest status words and
+     may not fit the 112 px column on one line: they wrap rather than being cut. */
+  .link-status .badge.missing {
+    white-space: normal;
+  }
+}
+
+/* A status word: the dot says which state, the word says what it is. */
+.badge {
+  max-width: 100%;
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+  font-weight: var(--w-strong);
+  line-height: 1.3;
+}
+.badge.current::before {
+  background: var(--ok);
+}
+.badge.update::before {
+  background: var(--warn);
+}
+.badge.missing::before,
+.badge.wrong::before {
+  background: var(--bad);
+}
+
+/* Local mode's paste target (Inbox tab): a dashed drop zone in the style of
+   the Excel pane's .upload-drop, Clear pasted links below it. */
+#paste-links-area {
+  display: grid;
+  gap: var(--gap-tight);
+  margin-bottom: 10px;
+}
+.paste-label {
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+  font-weight: var(--w-strong);
+}
+.paste-box {
+  display: block;
+  width: 100%;
+  min-height: 56px;
+  padding: 8px 10px;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-row);
+  background: var(--paper);
+  color: var(--ink);
+  font: var(--w-regular) var(--fs-body) var(--font);
+  resize: vertical;
+}
+#paste-links-area button {
+  min-height: var(--control-h);
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+/* The id above outranks the shared .armed rule in controls.css. */
+#paste-links-area button.armed {
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+.inbox-list {
+  display: grid;
+  gap: var(--gap-tight);
+}
+.inbox-project {
+  margin: 8px 0 0;
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+  font-weight: var(--w-strong);
+}
+.inbox-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-row);
+  background: var(--paper);
+}
+.inbox-text {
+  overflow: hidden;
+}
+.inbox-text strong,
+.inbox-text small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.inbox-text strong {
+  font-size: var(--fs-title);
+  line-height: 1.25;
+}
+.inbox-text small {
+  margin-top: 1px;
+  color: var(--ink-2);
+  font-size: var(--fs-body);
+}
+.inbox-insert {
+  min-height: var(--control-h);
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+
+/* "Change source": the inline picker under the link toolbar. Its own panel, so
+   it reads as a question about the ticked row rather than as more toolbar. */
+.source-chooser {
+  display: grid;
+  gap: var(--gap-tight);
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-row);
+  background: var(--paper);
+}

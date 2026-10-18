@@ -1,0 +1,2821 @@
+{
+  "about": "layoutChart output of 61f6a19 (v2.9.25) for payloads that version wrote; the current layout must reproduce it exactly, except the cases whose note says they were re-pinned",
+  "box": {
+    "left": 20,
+    "top": 30,
+    "width": 600,
+    "height": 300
+  },
+  "cases": [
+    {
+      "name": "tornadoShipped",
+      "note": "the chart of the SHIPPED_TORNADO payload (src/link/chart-model.test.ts)",
+      "chart": {
+        "v": 1,
+        "kind": "bar",
+        "title": null,
+        "categories": ["Low", "High"],
+        "series": [
+          {
+            "name": "Delta",
+            "values": [-40, 40],
+            "labels": ["(40)", "40"],
+            "colors": ["#B27E54", "#B27E54"]
+          }
+        ],
+        "font": "Aptos Narrow",
+        "ink": "#282623",
+        "titleColor": "#14213D",
+        "overlap": true
+      },
+      "primitives": [
+        {
+          "kind": "rect",
+          "box": {
+            "left": 188.00000000000003,
+            "top": 76.2,
+            "width": 215.99999999999997,
+            "height": 84.6
+          },
+          "color": "#B27E54",
+          "name": "bar 0.0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 151.40000000000003,
+            "top": 109.5,
+            "width": 36.599999999999994,
+            "height": 18
+          },
+          "text": "(40)",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "label 0.0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 404,
+            "top": 217.2,
+            "width": 216,
+            "height": 84.6
+          },
+          "color": "#B27E54",
+          "name": "bar 0.1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 594.2,
+            "top": 250.5,
+            "width": 25.799999999999997,
+            "height": 18
+          },
+          "text": "40",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "label 0.1"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 404,
+            "top": 48,
+            "width": 0,
+            "height": 282
+          },
+          "color": "#282623",
+          "weight": 0.75,
+          "rising": false,
+          "name": "baseline"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 48,
+            "width": 168.00000000000003,
+            "height": 141
+          },
+          "text": "Low",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "category 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 189,
+            "width": 168.00000000000003,
+            "height": 141
+          },
+          "text": "High",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "category 1"
+        }
+      ]
+    },
+    {
+      "name": "tornado",
+      "note": "a four-driver tornado, both series on one row",
+      "chart": {
+        "v": 1,
+        "font": "Aptos Narrow",
+        "ink": "#282623",
+        "titleColor": "#14213D",
+        "kind": "bar",
+        "title": "EBITDA sensitivity",
+        "categories": ["Price", "Volume", "Margin", "Capex"],
+        "series": [
+          {
+            "name": "Low",
+            "values": [-30, -20, -12, -5],
+            "labels": ["(30)", "(20)", "(12)", "(5)"],
+            "colors": ["#B27E54", "#B27E54", "#B27E54", "#B27E54"]
+          },
+          {
+            "name": "High",
+            "values": [35, 22, 10, 6],
+            "labels": ["35", "22", "10", "6"],
+            "colors": ["#2EC4B6", "#2EC4B6", "#2EC4B6", "#2EC4B6"]
+          }
+        ],
+        "overlap": true
+      },
+      "primitives": [
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 30,
+            "width": 600,
+            "height": 18
+          },
+          "text": "EBITDA sensitivity",
+          "size": 12,
+          "bold": true,
+          "color": "#14213D",
+          "align": "l",
+          "name": "title"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 387.3846153846154,
+            "top": 61.3,
+            "width": 232.61538461538458,
+            "height": 39.9
+          },
+          "color": "#2EC4B6",
+          "name": "bar 1.0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 594.2,
+            "top": 72.25,
+            "width": 25.799999999999997,
+            "height": 18
+          },
+          "text": "35",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "label 1.0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 188.00000000000003,
+            "top": 61.3,
+            "width": 199.3846153846154,
+            "height": 39.9
+          },
+          "color": "#B27E54",
+          "name": "bar 0.0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 151.40000000000003,
+            "top": 72.25,
+            "width": 36.599999999999994,
+            "height": 18
+          },
+          "text": "(30)",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "label 0.0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 387.3846153846154,
+            "top": 127.8,
+            "width": 146.2153846153846,
+            "height": 39.9
+          },
+          "color": "#2EC4B6",
+          "name": "bar 1.1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 533.6,
+            "top": 138.75,
+            "width": 25.799999999999997,
+            "height": 18
+          },
+          "text": "22",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "label 1.1"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 254.4615384615385,
+            "top": 127.8,
+            "width": 132.9230769230769,
+            "height": 39.9
+          },
+          "color": "#B27E54",
+          "name": "bar 0.1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 217.86153846153852,
+            "top": 138.75,
+            "width": 36.599999999999994,
+            "height": 18
+          },
+          "text": "(20)",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "label 0.1"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 307.63076923076926,
+            "top": 194.3,
+            "width": 79.75384615384615,
+            "height": 39.9
+          },
+          "color": "#B27E54",
+          "name": "bar 0.2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 271.03076923076924,
+            "top": 205.25,
+            "width": 36.599999999999994,
+            "height": 18
+          },
+          "text": "(12)",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "label 0.2"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 387.3846153846154,
+            "top": 194.3,
+            "width": 66.46153846153851,
+            "height": 39.9
+          },
+          "color": "#2EC4B6",
+          "name": "bar 1.2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 453.8461538461539,
+            "top": 205.25,
+            "width": 25.799999999999997,
+            "height": 18
+          },
+          "text": "10",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "label 1.2"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 387.3846153846154,
+            "top": 260.8,
+            "width": 39.876923076923106,
+            "height": 39.9
+          },
+          "color": "#2EC4B6",
+          "name": "bar 1.3"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 427.2615384615385,
+            "top": 271.75,
+            "width": 20.4,
+            "height": 18
+          },
+          "text": "6",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "label 1.3"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 354.1538461538462,
+            "top": 260.8,
+            "width": 33.230769230769226,
+            "height": 39.9
+          },
+          "color": "#B27E54",
+          "name": "bar 0.3"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 322.9538461538462,
+            "top": 271.75,
+            "width": 31.2,
+            "height": 18
+          },
+          "text": "(5)",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "label 0.3"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 387.3846153846154,
+            "top": 48,
+            "width": 0,
+            "height": 266
+          },
+          "color": "#282623",
+          "weight": 0.75,
+          "rising": false,
+          "name": "baseline"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 48,
+            "width": 168.00000000000003,
+            "height": 66.5
+          },
+          "text": "Price",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "category 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 114.5,
+            "width": 168.00000000000003,
+            "height": 66.5
+          },
+          "text": "Volume",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "category 1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 181,
+            "width": 168.00000000000003,
+            "height": 66.5
+          },
+          "text": "Margin",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "category 2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 247.5,
+            "width": 168.00000000000003,
+            "height": 66.5
+          },
+          "text": "Capex",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "category 3"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 20,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#B27E54",
+          "name": "legend swatch 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 43,
+            "top": 314,
+            "width": 31.2,
+            "height": 16
+          },
+          "text": "Low",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 89.2,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#2EC4B6",
+          "name": "legend swatch 1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 112.2,
+            "top": 314,
+            "width": 36.599999999999994,
+            "height": 16
+          },
+          "text": "High",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 1"
+        }
+      ]
+    },
+    {
+      "name": "clusteredBar",
+      "note": "a clustered bar chart written by v2.9.25, no category-order field",
+      "chart": {
+        "v": 1,
+        "font": "Aptos Narrow",
+        "ink": "#282623",
+        "titleColor": "#14213D",
+        "kind": "bar",
+        "title": "Revenue by region",
+        "categories": ["North", "South", "East"],
+        "series": [
+          {
+            "name": "2025",
+            "values": [120, 90, 60],
+            "labels": ["120", "90", "60"],
+            "colors": ["#2EC4B6", "#2EC4B6", "#2EC4B6"]
+          },
+          {
+            "name": "2026",
+            "values": [80, -40, 100],
+            "labels": ["80", "(40)", "100"],
+            "colors": ["#14213D", "#14213D", "#14213D"]
+          }
+        ]
+      },
+      "primitives": [
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 30,
+            "width": 600,
+            "height": 18
+          },
+          "text": "Revenue by region",
+          "size": 12,
+          "bold": true,
+          "color": "#14213D",
+          "align": "l",
+          "name": "title"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 296,
+            "top": 65.73333333333333,
+            "width": 324,
+            "height": 26.6
+          },
+          "color": "#2EC4B6",
+          "name": "bar 0.0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 588.8,
+            "top": 70.03333333333333,
+            "width": 31.2,
+            "height": 18
+          },
+          "text": "120",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "label 0.0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 296,
+            "top": 92.33333333333334,
+            "width": 216,
+            "height": 26.6
+          },
+          "color": "#14213D",
+          "name": "bar 1.0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 512,
+            "top": 96.63333333333334,
+            "width": 25.799999999999997,
+            "height": 18
+          },
+          "text": "80",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "label 1.0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 296,
+            "top": 154.40000000000003,
+            "width": 243,
+            "height": 26.6
+          },
+          "color": "#2EC4B6",
+          "name": "bar 0.1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 539,
+            "top": 158.70000000000005,
+            "width": 25.799999999999997,
+            "height": 18
+          },
+          "text": "90",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "label 0.1"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 188.00000000000003,
+            "top": 181.00000000000003,
+            "width": 107.99999999999997,
+            "height": 26.6
+          },
+          "color": "#14213D",
+          "name": "bar 1.1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 151.40000000000003,
+            "top": 185.30000000000004,
+            "width": 36.599999999999994,
+            "height": 18
+          },
+          "text": "(40)",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "label 1.1"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 296,
+            "top": 243.06666666666666,
+            "width": 162,
+            "height": 26.6
+          },
+          "color": "#2EC4B6",
+          "name": "bar 0.2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 458,
+            "top": 247.36666666666667,
+            "width": 25.799999999999997,
+            "height": 18
+          },
+          "text": "60",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "label 0.2"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 296,
+            "top": 269.6666666666667,
+            "width": 270,
+            "height": 26.6
+          },
+          "color": "#14213D",
+          "name": "bar 1.2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 566,
+            "top": 273.9666666666667,
+            "width": 31.2,
+            "height": 18
+          },
+          "text": "100",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "label 1.2"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 296,
+            "top": 48,
+            "width": 0,
+            "height": 266
+          },
+          "color": "#282623",
+          "weight": 0.75,
+          "rising": false,
+          "name": "baseline"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 48,
+            "width": 168.00000000000003,
+            "height": 88.66666666666667
+          },
+          "text": "North",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "category 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 136.66666666666669,
+            "width": 168.00000000000003,
+            "height": 88.66666666666667
+          },
+          "text": "South",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "category 1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 225.33333333333334,
+            "width": 168.00000000000003,
+            "height": 88.66666666666666
+          },
+          "text": "East",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "category 2"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 20,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#2EC4B6",
+          "name": "legend swatch 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 43,
+            "top": 314,
+            "width": 36.599999999999994,
+            "height": 16
+          },
+          "text": "2025",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 94.6,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#14213D",
+          "name": "legend swatch 1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 117.6,
+            "top": 314,
+            "width": 36.599999999999994,
+            "height": 16
+          },
+          "text": "2026",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 1"
+        }
+      ]
+    },
+    {
+      "name": "stackedBar",
+      "note": "a stacked bar chart written by v2.9.25, no category-order field",
+      "chart": {
+        "v": 1,
+        "font": "Aptos Narrow",
+        "ink": "#282623",
+        "titleColor": "#14213D",
+        "kind": "stackedBar",
+        "title": "Revenue by segment",
+        "categories": ["Q1", "Q2", "Q3"],
+        "series": [
+          {
+            "name": "Retail",
+            "values": [60, 70, 80],
+            "labels": ["60", "70", "80"],
+            "colors": ["#2EC4B6", "#2EC4B6", "#2EC4B6"]
+          },
+          {
+            "name": "Corporate",
+            "values": [40, 50, -10],
+            "labels": ["40", "50", "(10)"],
+            "colors": ["#14213D", "#14213D", "#14213D"]
+          },
+          {
+            "name": "Other",
+            "values": [10, 5, 15],
+            "labels": ["10", "5", "15"],
+            "colors": ["#8DA2B0", "#8DA2B0", "#8DA2B0"]
+          }
+        ]
+      },
+      "primitives": [
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 30,
+            "width": 600,
+            "height": 18
+          },
+          "text": "Revenue by segment",
+          "size": 12,
+          "bold": true,
+          "color": "#14213D",
+          "align": "l",
+          "name": "title"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 220.00000000000003,
+            "top": 65.73333333333333,
+            "width": 191.99999999999997,
+            "height": 53.2
+          },
+          "color": "#2EC4B6",
+          "name": "bar 0.0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 220.00000000000003,
+            "top": 65.73333333333333,
+            "width": 191.99999999999997,
+            "height": 53.2
+          },
+          "text": "60",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 412,
+            "top": 65.73333333333333,
+            "width": 128,
+            "height": 53.2
+          },
+          "color": "#14213D",
+          "name": "bar 1.0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 412,
+            "top": 65.73333333333333,
+            "width": 128,
+            "height": 53.2
+          },
+          "text": "40",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF",
+          "align": "c",
+          "name": "label 1.0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 540,
+            "top": 65.73333333333333,
+            "width": 32,
+            "height": 53.2
+          },
+          "color": "#8DA2B0",
+          "name": "bar 2.0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 540,
+            "top": 65.73333333333333,
+            "width": 32,
+            "height": 53.2
+          },
+          "text": "10",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 2.0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 220.00000000000003,
+            "top": 154.40000000000003,
+            "width": 223.99999999999997,
+            "height": 53.2
+          },
+          "color": "#2EC4B6",
+          "name": "bar 0.1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 220.00000000000003,
+            "top": 154.40000000000003,
+            "width": 223.99999999999997,
+            "height": 53.2
+          },
+          "text": "70",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.1"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 444,
+            "top": 154.40000000000003,
+            "width": 160,
+            "height": 53.2
+          },
+          "color": "#14213D",
+          "name": "bar 1.1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 444,
+            "top": 154.40000000000003,
+            "width": 160,
+            "height": 53.2
+          },
+          "text": "50",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF",
+          "align": "c",
+          "name": "label 1.1"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 604,
+            "top": 154.40000000000003,
+            "width": 16,
+            "height": 53.2
+          },
+          "color": "#8DA2B0",
+          "name": "bar 2.1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 604,
+            "top": 154.40000000000003,
+            "width": 16,
+            "height": 53.2
+          },
+          "text": "5",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 2.1"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 220.00000000000003,
+            "top": 243.06666666666666,
+            "width": 255.99999999999997,
+            "height": 53.2
+          },
+          "color": "#2EC4B6",
+          "name": "bar 0.2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 220.00000000000003,
+            "top": 243.06666666666666,
+            "width": 255.99999999999997,
+            "height": 53.2
+          },
+          "text": "80",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.2"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 188.00000000000003,
+            "top": 243.06666666666666,
+            "width": 32,
+            "height": 53.2
+          },
+          "color": "#14213D",
+          "name": "bar 1.2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 188.00000000000003,
+            "top": 243.06666666666666,
+            "width": 32,
+            "height": 53.2
+          },
+          "text": "(10)",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF",
+          "align": "c",
+          "name": "label 1.2"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 476,
+            "top": 243.06666666666666,
+            "width": 48,
+            "height": 53.2
+          },
+          "color": "#8DA2B0",
+          "name": "bar 2.2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 476,
+            "top": 243.06666666666666,
+            "width": 48,
+            "height": 53.2
+          },
+          "text": "15",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 2.2"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 220.00000000000003,
+            "top": 48,
+            "width": 0,
+            "height": 266
+          },
+          "color": "#282623",
+          "weight": 0.75,
+          "rising": false,
+          "name": "baseline"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 48,
+            "width": 168.00000000000003,
+            "height": 88.66666666666667
+          },
+          "text": "Q1",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "category 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 136.66666666666669,
+            "width": 168.00000000000003,
+            "height": 88.66666666666667
+          },
+          "text": "Q2",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "category 1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 225.33333333333334,
+            "width": 168.00000000000003,
+            "height": 88.66666666666666
+          },
+          "text": "Q3",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "category 2"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 20,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#2EC4B6",
+          "name": "legend swatch 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 43,
+            "top": 314,
+            "width": 47.4,
+            "height": 16
+          },
+          "text": "Retail",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 105.4,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#14213D",
+          "name": "legend swatch 1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 128.4,
+            "top": 314,
+            "width": 63.599999999999994,
+            "height": 16
+          },
+          "text": "Corporate",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 1"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 207,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#8DA2B0",
+          "name": "legend swatch 2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 230,
+            "top": 314,
+            "width": 42,
+            "height": 16
+          },
+          "text": "Other",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 2"
+        }
+      ]
+    },
+    {
+      "name": "stackedColumn",
+      "note": "the chart of the SHIPPED_STACKED payload (src/link/chart-model.test.ts)",
+      "chart": {
+        "v": 1,
+        "kind": "stackedColumn",
+        "title": "Revenue by segment",
+        "categories": ["2024A", "2025E", "2026E"],
+        "series": [
+          {
+            "name": "Retail",
+            "values": [60, 70, 80],
+            "labels": ["60", "70", "80"],
+            "colors": ["#2EC4B6", "#2EC4B6", "#2EC4B6"]
+          },
+          {
+            "name": "Corporate",
+            "values": [40, 50, -10],
+            "labels": ["40", "50", "(10)"],
+            "colors": ["#14213D", "#14213D", "#14213D"]
+          }
+        ],
+        "font": "Aptos Narrow",
+        "ink": "#282623",
+        "titleColor": "#14213D"
+      },
+      "primitives": [
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 30,
+            "width": 600,
+            "height": 18
+          },
+          "text": "Revenue by segment",
+          "size": 12,
+          "bold": true,
+          "color": "#14213D",
+          "align": "l",
+          "name": "title"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 60,
+            "top": 162.46153846153845,
+            "width": 120,
+            "height": 114.46153846153845
+          },
+          "color": "#2EC4B6",
+          "name": "bar 0.0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 60,
+            "top": 162.46153846153845,
+            "width": 120,
+            "height": 114.46153846153845
+          },
+          "text": "60",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 260,
+            "top": 143.3846153846154,
+            "width": 120,
+            "height": 133.53846153846152
+          },
+          "color": "#2EC4B6",
+          "name": "bar 0.1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 260,
+            "top": 143.3846153846154,
+            "width": 120,
+            "height": 133.53846153846152
+          },
+          "text": "70",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.1"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 460,
+            "top": 124.3076923076923,
+            "width": 120,
+            "height": 152.61538461538458
+          },
+          "color": "#2EC4B6",
+          "name": "bar 0.2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 460,
+            "top": 124.3076923076923,
+            "width": 120,
+            "height": 152.61538461538458
+          },
+          "text": "80",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.2"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 60,
+            "top": 86.15384615384616,
+            "width": 120,
+            "height": 76.30769230769229
+          },
+          "color": "#14213D",
+          "name": "bar 1.0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 60,
+            "top": 86.15384615384616,
+            "width": 120,
+            "height": 76.30769230769229
+          },
+          "text": "40",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF",
+          "align": "c",
+          "name": "label 1.0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 260,
+            "top": 48,
+            "width": 120,
+            "height": 95.38461538461539
+          },
+          "color": "#14213D",
+          "name": "bar 1.1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 260,
+            "top": 48,
+            "width": 120,
+            "height": 95.38461538461539
+          },
+          "text": "50",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF",
+          "align": "c",
+          "name": "label 1.1"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 460,
+            "top": 276.9230769230769,
+            "width": 120,
+            "height": 19.076923076923094
+          },
+          "color": "#14213D",
+          "name": "bar 1.2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 460,
+            "top": 276.9230769230769,
+            "width": 120,
+            "height": 19.076923076923094
+          },
+          "text": "(10)",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF",
+          "align": "c",
+          "name": "label 1.2"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 20,
+            "top": 276.9230769230769,
+            "width": 600,
+            "height": 0
+          },
+          "color": "#282623",
+          "weight": 0.75,
+          "rising": false,
+          "name": "baseline"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 296,
+            "width": 200,
+            "height": 18
+          },
+          "text": "2024A",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "category 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 220,
+            "top": 296,
+            "width": 200,
+            "height": 18
+          },
+          "text": "2025E",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "category 1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 420,
+            "top": 296,
+            "width": 200,
+            "height": 18
+          },
+          "text": "2026E",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "category 2"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 20,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#2EC4B6",
+          "name": "legend swatch 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 43,
+            "top": 314,
+            "width": 47.4,
+            "height": 16
+          },
+          "text": "Retail",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 105.4,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#14213D",
+          "name": "legend swatch 1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 128.4,
+            "top": 314,
+            "width": 63.599999999999994,
+            "height": 16
+          },
+          "text": "Corporate",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 1"
+        }
+      ]
+    },
+    {
+      "name": "column",
+      "note": "a clustered column chart with a negative value; re-pinned 05.10.2026 for the title-band fix: the value scale keeps room for the labels above the bars",
+      "chart": {
+        "v": 1,
+        "font": "Aptos Narrow",
+        "ink": "#282623",
+        "titleColor": "#14213D",
+        "kind": "column",
+        "title": "Net income",
+        "categories": ["2024A", "2025E", "2026E"],
+        "series": [
+          {
+            "name": "Base",
+            "values": [100, -50, 200],
+            "labels": ["100", "(50)", "200"],
+            "colors": ["#2EC4B6", "#2EC4B6", "#2EC4B6"]
+          },
+          {
+            "name": "Upside",
+            "values": [120, -20, 240],
+            "labels": ["120", "(20)", "240"],
+            "colors": ["#14213D", "#14213D", "#14213D"]
+          }
+        ]
+      },
+      "primitives": [
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 30,
+            "width": 600,
+            "height": 18
+          },
+          "text": "Net income",
+          "size": 12,
+          "bold": true,
+          "color": "#14213D",
+          "align": "l",
+          "name": "title"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 60,
+            "top": 178.58620689655174,
+            "width": 60,
+            "height": 78.27586206896552
+          },
+          "color": "#2EC4B6",
+          "name": "bar 0.0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 60,
+            "top": 160.58620689655174,
+            "width": 60,
+            "height": 18
+          },
+          "text": "100",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 260,
+            "top": 256.86206896551727,
+            "width": 60,
+            "height": 39.13793103448273
+          },
+          "color": "#2EC4B6",
+          "name": "bar 0.1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 260,
+            "top": 296,
+            "width": 60,
+            "height": 18
+          },
+          "text": "(50)",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.1"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 460,
+            "top": 100.31034482758622,
+            "width": 60,
+            "height": 156.55172413793105
+          },
+          "color": "#2EC4B6",
+          "name": "bar 0.2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 460,
+            "top": 82.31034482758622,
+            "width": 60,
+            "height": 18
+          },
+          "text": "200",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.2"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 120,
+            "top": 162.93103448275863,
+            "width": 60,
+            "height": 93.93103448275863
+          },
+          "color": "#14213D",
+          "name": "bar 1.0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 120,
+            "top": 144.93103448275863,
+            "width": 60,
+            "height": 18
+          },
+          "text": "120",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 1.0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 320,
+            "top": 256.86206896551727,
+            "width": 60,
+            "height": 15.655172413793082
+          },
+          "color": "#14213D",
+          "name": "bar 1.1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 320,
+            "top": 272.51724137931035,
+            "width": 60,
+            "height": 18
+          },
+          "text": "(20)",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 1.1"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 520,
+            "top": 69.00000000000001,
+            "width": 60,
+            "height": 187.86206896551727
+          },
+          "color": "#14213D",
+          "name": "bar 1.2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 520,
+            "top": 51.000000000000014,
+            "width": 60,
+            "height": 18
+          },
+          "text": "240",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 1.2"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 20,
+            "top": 256.86206896551727,
+            "width": 600,
+            "height": 0
+          },
+          "color": "#282623",
+          "weight": 0.75,
+          "rising": false,
+          "name": "baseline"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 296,
+            "width": 200,
+            "height": 18
+          },
+          "text": "2024A",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "category 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 220,
+            "top": 296,
+            "width": 200,
+            "height": 18
+          },
+          "text": "2025E",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "category 1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 420,
+            "top": 296,
+            "width": 200,
+            "height": 18
+          },
+          "text": "2026E",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "category 2"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 20,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#2EC4B6",
+          "name": "legend swatch 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 43,
+            "top": 314,
+            "width": 36.599999999999994,
+            "height": 16
+          },
+          "text": "Base",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 94.6,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#14213D",
+          "name": "legend swatch 1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 117.6,
+            "top": 314,
+            "width": 47.4,
+            "height": 16
+          },
+          "text": "Upside",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 1"
+        }
+      ]
+    },
+    {
+      "name": "line",
+      "note": "two lines over four points",
+      "chart": {
+        "v": 1,
+        "font": "Aptos Narrow",
+        "ink": "#282623",
+        "titleColor": "#14213D",
+        "kind": "line",
+        "title": "Margin",
+        "categories": ["Q1", "Q2", "Q3", "Q4"],
+        "series": [
+          {
+            "name": "EBITDA",
+            "values": [10, 12, 9, 14],
+            "labels": ["10", "12", "9", "14"],
+            "colors": ["#2EC4B6", "#2EC4B6", "#2EC4B6", "#2EC4B6"]
+          },
+          {
+            "name": "EBIT",
+            "values": [6, 8, 5, 9],
+            "labels": ["6", "8", "5", "9"],
+            "colors": ["#14213D", "#14213D", "#14213D", "#14213D"]
+          }
+        ]
+      },
+      "primitives": [
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 30,
+            "width": 600,
+            "height": 18
+          },
+          "text": "Margin",
+          "size": 12,
+          "bold": true,
+          "color": "#14213D",
+          "align": "l",
+          "name": "title"
+        },
+        {
+          "kind": "ellipse",
+          "box": {
+            "left": 92,
+            "top": 115.85714285714285,
+            "width": 6,
+            "height": 6
+          },
+          "color": "#2EC4B6",
+          "name": "marker 0.0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 82.1,
+            "top": 97.85714285714285,
+            "width": 25.799999999999997,
+            "height": 18
+          },
+          "text": "10",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.0"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 95,
+            "top": 83.42857142857142,
+            "width": 150,
+            "height": 35.42857142857143
+          },
+          "color": "#2EC4B6",
+          "weight": 1.5,
+          "rising": true,
+          "name": "line 0.0"
+        },
+        {
+          "kind": "ellipse",
+          "box": {
+            "left": 242,
+            "top": 80.42857142857142,
+            "width": 6,
+            "height": 6
+          },
+          "color": "#2EC4B6",
+          "name": "marker 0.1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 232.1,
+            "top": 62.428571428571416,
+            "width": 25.799999999999997,
+            "height": 18
+          },
+          "text": "12",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.1"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 245,
+            "top": 83.42857142857142,
+            "width": 150,
+            "height": 53.14285714285714
+          },
+          "color": "#2EC4B6",
+          "weight": 1.5,
+          "rising": false,
+          "name": "line 0.1"
+        },
+        {
+          "kind": "ellipse",
+          "box": {
+            "left": 392,
+            "top": 133.57142857142856,
+            "width": 6,
+            "height": 6
+          },
+          "color": "#2EC4B6",
+          "name": "marker 0.2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 384.8,
+            "top": 115.57142857142856,
+            "width": 20.4,
+            "height": 18
+          },
+          "text": "9",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.2"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 395,
+            "top": 48,
+            "width": 150,
+            "height": 88.57142857142856
+          },
+          "color": "#2EC4B6",
+          "weight": 1.5,
+          "rising": true,
+          "name": "line 0.2"
+        },
+        {
+          "kind": "ellipse",
+          "box": {
+            "left": 542,
+            "top": 48,
+            "width": 6,
+            "height": 6
+          },
+          "color": "#2EC4B6",
+          "name": "marker 0.3"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 532.1,
+            "top": 54,
+            "width": 25.799999999999997,
+            "height": 18
+          },
+          "text": "14",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.3"
+        },
+        {
+          "kind": "ellipse",
+          "box": {
+            "left": 92,
+            "top": 186.7142857142857,
+            "width": 6,
+            "height": 6
+          },
+          "color": "#14213D",
+          "name": "marker 1.0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 84.8,
+            "top": 168.7142857142857,
+            "width": 20.4,
+            "height": 18
+          },
+          "text": "6",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 1.0"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 95,
+            "top": 154.28571428571428,
+            "width": 150,
+            "height": 35.428571428571416
+          },
+          "color": "#14213D",
+          "weight": 1.5,
+          "rising": true,
+          "name": "line 1.0"
+        },
+        {
+          "kind": "ellipse",
+          "box": {
+            "left": 242,
+            "top": 151.28571428571428,
+            "width": 6,
+            "height": 6
+          },
+          "color": "#14213D",
+          "name": "marker 1.1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 234.8,
+            "top": 133.28571428571428,
+            "width": 20.4,
+            "height": 18
+          },
+          "text": "8",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 1.1"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 245,
+            "top": 154.28571428571428,
+            "width": 150,
+            "height": 53.14285714285717
+          },
+          "color": "#14213D",
+          "weight": 1.5,
+          "rising": false,
+          "name": "line 1.1"
+        },
+        {
+          "kind": "ellipse",
+          "box": {
+            "left": 392,
+            "top": 204.42857142857144,
+            "width": 6,
+            "height": 6
+          },
+          "color": "#14213D",
+          "name": "marker 1.2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 384.8,
+            "top": 186.42857142857144,
+            "width": 20.4,
+            "height": 18
+          },
+          "text": "5",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 1.2"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 395,
+            "top": 136.57142857142856,
+            "width": 150,
+            "height": 70.85714285714289
+          },
+          "color": "#14213D",
+          "weight": 1.5,
+          "rising": true,
+          "name": "line 1.2"
+        },
+        {
+          "kind": "ellipse",
+          "box": {
+            "left": 542,
+            "top": 133.57142857142856,
+            "width": 6,
+            "height": 6
+          },
+          "color": "#14213D",
+          "name": "marker 1.3"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 534.8,
+            "top": 115.57142857142856,
+            "width": 20.4,
+            "height": 18
+          },
+          "text": "9",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 1.3"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 20,
+            "top": 296,
+            "width": 600,
+            "height": 0
+          },
+          "color": "#282623",
+          "weight": 0.75,
+          "rising": false,
+          "name": "baseline"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 296,
+            "width": 150,
+            "height": 18
+          },
+          "text": "Q1",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "category 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 170,
+            "top": 296,
+            "width": 150,
+            "height": 18
+          },
+          "text": "Q2",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "category 1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 320,
+            "top": 296,
+            "width": 150,
+            "height": 18
+          },
+          "text": "Q3",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "category 2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 470,
+            "top": 296,
+            "width": 150,
+            "height": 18
+          },
+          "text": "Q4",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "category 3"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 20,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#2EC4B6",
+          "name": "legend swatch 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 43,
+            "top": 314,
+            "width": 47.4,
+            "height": 16
+          },
+          "text": "EBITDA",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 105.4,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#14213D",
+          "name": "legend swatch 1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 128.4,
+            "top": 314,
+            "width": 36.599999999999994,
+            "height": 16
+          },
+          "text": "EBIT",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 1"
+        }
+      ]
+    },
+    {
+      "name": "waterfall",
+      "note": "a four-step bridge; re-pinned 05.10.2026 for the title-band fix: the value scale keeps room for the labels above the bars",
+      "chart": {
+        "v": 1,
+        "font": "Aptos Narrow",
+        "ink": "#282623",
+        "titleColor": "#14213D",
+        "kind": "waterfall",
+        "title": "EBITDA bridge",
+        "categories": ["2025", "Price", "Cost", "2026"],
+        "series": [
+          {
+            "name": "Bridge",
+            "values": [100, 30, -20, 110],
+            "labels": ["100", "30", "(20)", "110"],
+            "colors": ["#14213D", "#2EC4B6", "#B27E54", "#14213D"]
+          }
+        ]
+      },
+      "primitives": [
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 30,
+            "width": 600,
+            "height": 18
+          },
+          "text": "EBITDA bridge",
+          "size": 12,
+          "bold": true,
+          "color": "#14213D",
+          "align": "l",
+          "name": "title"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 50,
+            "top": 125.07692307692305,
+            "width": 90,
+            "height": 186.92307692307696
+          },
+          "color": "#14213D",
+          "name": "bar 0.0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 50,
+            "top": 107.07692307692305,
+            "width": 90,
+            "height": 18
+          },
+          "text": "100",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 200,
+            "top": 68.99999999999997,
+            "width": 90,
+            "height": 56.07692307692308
+          },
+          "color": "#2EC4B6",
+          "name": "bar 0.1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 200,
+            "top": 50.99999999999997,
+            "width": 90,
+            "height": 18
+          },
+          "text": "30",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.1"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 350,
+            "top": 68.99999999999997,
+            "width": 90,
+            "height": 37.38461538461539
+          },
+          "color": "#B27E54",
+          "name": "bar 0.2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 350,
+            "top": 106.38461538461536,
+            "width": 90,
+            "height": 18
+          },
+          "text": "(20)",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.2"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 500,
+            "top": 106.38461538461536,
+            "width": 90,
+            "height": 205.61538461538464
+          },
+          "color": "#14213D",
+          "name": "bar 0.3"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 500,
+            "top": 88.38461538461536,
+            "width": 90,
+            "height": 18
+          },
+          "text": "110",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "label 0.3"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 140,
+            "top": 125.07692307692305,
+            "width": 60,
+            "height": 0
+          },
+          "color": "#282623",
+          "weight": 0.75,
+          "rising": false,
+          "name": "connector 0"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 290,
+            "top": 68.99999999999997,
+            "width": 60,
+            "height": 0
+          },
+          "color": "#282623",
+          "weight": 0.75,
+          "rising": false,
+          "name": "connector 1"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 440,
+            "top": 106.38461538461536,
+            "width": 60,
+            "height": 0
+          },
+          "color": "#282623",
+          "weight": 0.75,
+          "rising": false,
+          "name": "connector 2"
+        },
+        {
+          "kind": "line",
+          "box": {
+            "left": 20,
+            "top": 312,
+            "width": 600,
+            "height": 0
+          },
+          "color": "#282623",
+          "weight": 0.75,
+          "rising": false,
+          "name": "baseline"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 312,
+            "width": 150,
+            "height": 18
+          },
+          "text": "2025",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "category 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 170,
+            "top": 312,
+            "width": 150,
+            "height": 18
+          },
+          "text": "Price",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "category 1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 320,
+            "top": 312,
+            "width": 150,
+            "height": 18
+          },
+          "text": "Cost",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "category 2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 470,
+            "top": 312,
+            "width": 150,
+            "height": 18
+          },
+          "text": "2026",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "c",
+          "name": "category 3"
+        }
+      ]
+    },
+    {
+      "name": "pie",
+      "note": "four slices",
+      "chart": {
+        "v": 1,
+        "font": "Aptos Narrow",
+        "ink": "#282623",
+        "titleColor": "#14213D",
+        "kind": "pie",
+        "title": "Mix",
+        "categories": ["A", "B", "C", "D"],
+        "series": [
+          {
+            "name": "Share",
+            "values": [40, 30, 20, 10],
+            "labels": ["40", "30", "20", "10"],
+            "colors": ["#2EC4B6", "#14213D", "#8DA2B0", "#B27E54"]
+          }
+        ]
+      },
+      "primitives": [
+        {
+          "kind": "text",
+          "box": {
+            "left": 20,
+            "top": 30,
+            "width": 600,
+            "height": 18
+          },
+          "text": "Mix",
+          "size": 12,
+          "bold": true,
+          "color": "#14213D",
+          "align": "l",
+          "name": "title"
+        },
+        {
+          "kind": "wedge",
+          "box": {
+            "left": 213.6,
+            "top": 74.6,
+            "width": 212.8,
+            "height": 212.8
+          },
+          "start": -90,
+          "end": 54,
+          "color": "#2EC4B6",
+          "name": "slice 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 439.40704773388916,
+            "top": 133.2022983222366,
+            "width": 25.799999999999997,
+            "height": 18
+          },
+          "text": "40",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "label 0"
+        },
+        {
+          "kind": "wedge",
+          "box": {
+            "left": 213.6,
+            "top": 74.6,
+            "width": 212.8,
+            "height": 212.8
+          },
+          "start": 54,
+          "end": 162,
+          "color": "#14213D",
+          "name": "slice 1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 255.40229832223662,
+            "top": 291.40704773388916,
+            "width": 25.799999999999997,
+            "height": 18
+          },
+          "text": "30",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "label 1"
+        },
+        {
+          "kind": "wedge",
+          "box": {
+            "left": 213.6,
+            "top": 74.6,
+            "width": 212.8,
+            "height": 212.8
+          },
+          "start": 162,
+          "end": -126,
+          "color": "#8DA2B0",
+          "name": "slice 2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 174.7929522661109,
+            "top": 133.20229832223663,
+            "width": 25.799999999999997,
+            "height": 18
+          },
+          "text": "20",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "label 2"
+        },
+        {
+          "kind": "wedge",
+          "box": {
+            "left": 213.6,
+            "top": 74.6,
+            "width": 212.8,
+            "height": 212.8
+          },
+          "start": -126,
+          "end": -90,
+          "color": "#B27E54",
+          "name": "slice 3"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 255.40229832223656,
+            "top": 52.59295226611087,
+            "width": 25.799999999999997,
+            "height": 18
+          },
+          "text": "10",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "r",
+          "name": "label 3"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 20,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#2EC4B6",
+          "name": "legend swatch 0"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 43,
+            "top": 314,
+            "width": 20.4,
+            "height": 16
+          },
+          "text": "A",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 0"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 78.4,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#14213D",
+          "name": "legend swatch 1"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 101.4,
+            "top": 314,
+            "width": 20.4,
+            "height": 16
+          },
+          "text": "B",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 1"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 136.8,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#8DA2B0",
+          "name": "legend swatch 2"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 159.8,
+            "top": 314,
+            "width": 20.4,
+            "height": 16
+          },
+          "text": "C",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 2"
+        },
+        {
+          "kind": "rect",
+          "box": {
+            "left": 195.20000000000002,
+            "top": 318,
+            "width": 8,
+            "height": 8
+          },
+          "color": "#B27E54",
+          "name": "legend swatch 3"
+        },
+        {
+          "kind": "text",
+          "box": {
+            "left": 218.20000000000002,
+            "top": 314,
+            "width": 20.4,
+            "height": 16
+          },
+          "text": "D",
+          "size": 9,
+          "bold": false,
+          "color": "#282623",
+          "align": "l",
+          "name": "legend 3"
+        }
+      ]
+    }
+  ]
+}

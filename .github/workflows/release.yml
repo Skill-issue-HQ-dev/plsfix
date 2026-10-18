@@ -1,8 +1,9 @@
 # One tag = one release: the manifest to sideload, the built panes, the demo
 # workbook and the container image, each proven before it is published.
-# Runs in the PUBLIC repo, which holds no source: it checks out the private
-# Skill-issue-HQ-dev/plsfix-dev at the same tag through a read-only deploy key
-# (secret PLSFIX_SOURCE_KEY), so the release is built by Actions, never by a person.
+# Runs in the PUBLIC repo: it checks out the private Skill-issue-HQ-dev/plsfix-dev at the
+# same tag through a read-only deploy key (secret PLSFIX_SOURCE_KEY), so the release is built
+# by Actions, never by a person. The manifest it offers is manifest.public.xml: the panes from
+# GitHub Pages (pages.yml), every link kept on the user's PC.
 name: release
 on:
   push:
@@ -15,10 +16,10 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    # The one job that publishes: the release needs contents, the image needs packages.
+    # The one job that publishes: the release needs contents. The image is built and
+    # smoke-tested as a release gate but not published: the source is private, so no one self-hosts.
     permissions:
       contents: write
-      packages: write
     env:
       TAG: ${{ github.event.inputs.tag || github.ref_name }}
     steps:
@@ -53,7 +54,11 @@ jobs:
             curl -fsS http://127.0.0.1:8804/healthz && break; sleep 1
           done
           curl -fsS http://127.0.0.1:8804/version | tee version.json; echo
-          grep -q "\"version\":\"${TAG#v}\"" version.json
+          # The public tag is not the source's number: the image reports the version of the
+          # source it was built from and, as "source", the tag it was built for.
+          dev="$(node -p "require('./package.json').version")"
+          grep -q "\"version\":\"$dev\"" version.json
+          grep -q "\"source\":\"$TAG\"" version.json
           curl -fsS -o /dev/null http://127.0.0.1:8804/taskpane.html
           curl -fsS http://127.0.0.1:8804/manifest.xml > manifest.self.xml
           grep -q 'https://example.test/taskpane.html' manifest.self.xml
@@ -64,12 +69,6 @@ jobs:
           docker rm -f plsfix
       - name: Compose file
         run: (cd deploy && cp .env.example .env && docker compose config -q)
-      - name: Push the image
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" \
-            | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
-          docker push "$IMAGE:$TAG"
-          docker push "$IMAGE:latest"
       - name: GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
@@ -81,12 +80,12 @@ jobs:
 
           - **Windows**, in PowerShell: \`irm $base/plsfix-install-windows.ps1 | iex\`
           - **Mac**, in Terminal: \`curl -fsSL $base/plsfix-install-mac.command | sh\`
-          - **Excel on the web**: Home > Add-ins > More Settings > Upload My Add-in, with \`manifest.prod.xml\` from the files below.
+          - **Excel on the web**: Home > Add-ins > More Settings > Upload My Add-in, with \`manifest.public.xml\` from the files below.
 
           Reopen Excel and PowerPoint: the **pls,fix** tab is on the ribbon, Ctrl+Shift+M opens the pane. \`pls.fix.Demo.Model.xlsx\` below has a "Start here" sheet that walks through every tool.
           EOF
           gh release create "$TAG" -R "$GITHUB_REPOSITORY" --title "pls,fix $TAG" --notes-file release-notes.txt \
-            manifest.prod.xml "plsfix-pane-$TAG.zip" "demo/out/pls,fix Demo Model.xlsx" \
+            manifest.public.xml "plsfix-pane-$TAG.zip" "demo/out/pls,fix Demo Model.xlsx" \
             "demo/deck/pls,fix Demo Deck.pptx" \
             deploy/install/plsfix-install-windows.ps1 deploy/install/plsfix-uninstall-windows.ps1 \
             deploy/install/plsfix-install-mac.command deploy/install/plsfix-uninstall-mac.command

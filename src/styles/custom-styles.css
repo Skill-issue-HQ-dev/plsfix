@@ -1,0 +1,105 @@
+/* The Tools tab's Custom styles section (src/pane/custom-styles-panel.ts): the
+   name box and Save style on one line, the styles as rows (a preview and the name
+   as one apply button, then Update and Delete icons), and Starter styles from
+   palette under them. The previews are painted inline from the workbook's own
+   colors, so no color value lives here, and nothing in this sheet may widen the
+   pane: names wrap, the name box shrinks. */
+
+.style-save-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--gap-tight);
+  align-items: center;
+}
+.style-name-field {
+  width: 100%;
+  min-width: 0;
+  min-height: var(--control-h);
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font: var(--w-regular) var(--fs-body) var(--font);
+}
+.style-name-field::placeholder {
+  color: var(--muted);
+  font-weight: var(--w-regular);
+}
+.style-name-field:hover {
+  border-color: var(--line-strong);
+}
+.style-save-row button,
+.style-starter {
+  min-height: var(--control-h);
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+.style-starter {
+  width: 100%;
+}
+
+/* A row: the apply button takes the room, the two icon buttons keep one tap
+   target each. A name that does not fit wraps and the row grows. */
+.custom-style-list {
+  display: grid;
+  gap: var(--gap-tight);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cs-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 4px;
+  align-items: start;
+}
+.cs-apply {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-tight);
+  min-width: 0;
+  min-height: var(--control-h);
+  padding: 4px 10px 4px 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-row);
+  color: var(--ink);
+  background: var(--paper);
+  text-align: left;
+  cursor: pointer;
+}
+/* What the style paints: the script sets the fill and the text color inline
+   from the workbook, the sheet draws the "Aa" and the weight. */
+.cs-sample {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 22px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  font-size: var(--fs-body);
+  font-weight: var(--w-regular);
+  line-height: 1;
+}
+.cs-sample::before {
+  content: "Aa";
+}
+.cs-sample.is-bold {
+  font-weight: var(--w-strong);
+}
+.cs-name {
+  min-width: 0;
+  font-size: var(--fs-title);
+  font-weight: var(--w-strong);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}

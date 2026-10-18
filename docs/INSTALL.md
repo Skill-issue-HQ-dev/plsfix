@@ -1,0 +1,109 @@
+# Get pls,fix
+
+pls,fix is free (MIT). Nothing is installed on the computer: one line tells Excel and
+PowerPoint where to load the add-in from, and every later update reaches you on the next
+launch. The Microsoft AppSource listing (Excel > Add-ins > search "pls,fix") is in
+preparation; until it is live, this page is the way in.
+
+Requirements: Excel and PowerPoint with Microsoft 365 (or Excel 2019 and PowerPoint 2021 or
+later), on Windows, Mac or the web.
+
+## Windows
+
+Open PowerShell (Start, type "PowerShell", Enter) and paste:
+
+```powershell
+irm https://github.com/Skill-issue-HQ-dev/plsfix/releases/latest/download/plsfix-install-windows.ps1 | iex
+```
+
+Close and reopen Excel and PowerPoint. To remove it, run the same line with `uninstall` in
+place of `install`. What the line does: downloads the add-in manifest to `%LOCALAPPDATA%\plsfix`
+and registers it under `HKCU\Software\Microsoft\Office\16.0\WEF\Developer`, the key Microsoft's
+own add-in tooling uses for sideloaded add-ins. No admin rights, no other software.
+
+## Mac
+
+Open Terminal (Spotlight, type "Terminal") and paste:
+
+```bash
+curl -fsSL https://github.com/Skill-issue-HQ-dev/plsfix/releases/latest/download/plsfix-install-mac.command | sh
+```
+
+Quit and reopen Excel and PowerPoint. To remove it, run the same line with `uninstall` in
+place of `install`. What the line does: copies the manifest into
+`~/Library/Containers/com.microsoft.Excel/Data/Documents/wef` and the PowerPoint twin, the
+folders Office reads sideloaded add-ins from. The same file can be downloaded and
+double-clicked instead; macOS then asks you to allow it under System Settings > Privacy &
+Security, which the Terminal line avoids.
+
+## Office on the web
+
+1. Open a workbook (or a deck) at <https://office.com>.
+2. **Home > Add-ins > More Settings**, then **Upload My Add-in**.
+3. **Browse** to [`manifest.public.xml`](https://github.com/Skill-issue-HQ-dev/plsfix/releases/latest/download/manifest.public.xml)
+   and **Upload**.
+
+The add-in is remembered in that browser's local storage, so a cleared cache or another
+browser means uploading it again. On the web, `=PLSFIX.ROUND` and `=PLSFIX.ROUNDSUM` can show
+`#NAME?` when Office's custom-functions runtime fails to start; every button still works.
+Source: [Sideload Office Add-ins to Office on the web](https://learn.microsoft.com/en-us/office/dev/add-ins/testing/sideload-office-add-ins-for-testing).
+
+## After the install
+
+The **pls,fix** tab sits on the ribbon of both apps; Ctrl+Shift+M opens the Excel pane, or
+**Home > Add-ins > pls,fix**. Download `pls,fix Demo Model.xlsx` from the
+[latest release](https://github.com/Skill-issue-HQ-dev/plsfix/releases/latest) and open it: the
+**Start here** sheet is a checklist, one row per tool, that walks through every tool on sheets
+built for them (a P&L with two planted errors, a bridge table for the waterfall, a tornado block,
+a peer table for Comps stats and a football field, an empty pad for each of the eighteen
+templates, plain tables to style and paste, a reviewer's sheet to run the model check on, a
+rounding split, a wide grid to unpivot). Every section of both panes carries a `?` that explains
+its buttons, and the Tools tab prints the keyboard shortcut card.
+
+`pls,fix Demo Deck.pptx` from the same release has a landing spot for each link kind (a table, a
+chart, a picture, a text) and shapes for the object tools: pick a target slide and a spot, then
+Insert or Update all.
+
+## For a whole organisation (Microsoft 365 admin)
+
+An administrator deploys it once for everyone: Microsoft 365 admin center > **Settings >
+Integrated apps > Upload custom apps**, upload `manifest.public.xml`, assign users or top-level
+groups, **Deploy**. The add-in shows up within a day or three; pane updates need no admin
+action afterwards, a manifest change (a new ribbon button) needs a re-upload. Needs a Global
+or Exchange administrator. Sources: [Integrated apps portal](https://learn.microsoft.com/en-us/microsoft-365/admin/manage/test-and-deploy-microsoft-365-apps),
+[Deploy add-ins in the admin center](https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-deployment-of-add-ins).
+
+## Manual sideload, if you would rather not run a script
+
+Download [`manifest.public.xml`](https://github.com/Skill-issue-HQ-dev/plsfix/releases/latest/download/manifest.public.xml).
+
+- **Mac:** in Finder press Cmd+Shift+G, open
+  `~/Library/Containers/com.microsoft.Excel/Data/Documents/wef` (create `wef` if missing), copy
+  the file in; the same for `~/Library/Containers/com.microsoft.Powerpoint/Data/Documents/wef`.
+  Restart the apps, then **Home > Add-ins > pls,fix**.
+  Source: [Sideload Office Add-ins on Mac](https://learn.microsoft.com/en-us/office/dev/add-ins/testing/sideload-an-office-add-in-on-mac).
+- **Windows:** Office reads manifests from a shared folder you trust once. Put the file in a
+  folder and share it (right-click > **Properties > Sharing > Share**, note the network path).
+  In Excel: **File > Options > Trust Center > Trust Center Settings > Trusted Add-in Catalogs**,
+  enter the path as **Catalog Url**, **Add catalog**, tick **Show in Menu**, restart Excel.
+  Then **Home > Add-ins > Advanced > SHARED FOLDER > pls,fix > Add**; the same in PowerPoint.
+  Source: [Sideload Office Add-ins on Windows from a network share](https://learn.microsoft.com/en-us/office/dev/add-ins/testing/create-a-network-shared-folder-catalog-for-task-pane-and-content-add-ins).
+
+Removing a manual sideload: delete the file from the folder and clear the Office cache
+([Clear the Office cache](https://learn.microsoft.com/en-us/office/dev/add-ins/testing/clear-cache)).
+
+## What leaves your computer
+
+Nothing you do. The panes are plain files from GitHub Pages
+(<https://skill-issue-hq-dev.github.io/plsfix/>, the address in the manifest), and they read the
+workbook inside Excel. A linked object (a range picture, a table, a chart or a text sent to
+PowerPoint) moves by copy and paste on the same computer: this build has no relay to send it
+to. Anyone who runs their own server ([SELF-HOSTING.md](SELF-HOSTING.md)) can add an encrypted
+relay between Excel and PowerPoint; details in [SECURITY.md](../SECURITY.md).
+
+## Your own server, or the source
+
+[SELF-HOSTING.md](SELF-HOSTING.md): `docker compose up` on your machine; its
+`https://your.host/manifest.xml` works with the same installers
+(`$env:PLSFIX_MANIFEST_URL` on Windows, `PLSFIX_MANIFEST_URL=` or the URL as the argument on
+Mac). [CONTRIBUTING.md](../CONTRIBUTING.md): `git clone`, `npm install`, `npm start`.

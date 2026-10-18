@@ -1,0 +1,396 @@
+/* The Excel pane's Tools and Workbook tabs: the selection readout, format grid,
+   cycle strips, trace panel and sheet explorer. The Links tab is
+   excel-links.css, the Brand tab brand.css, shared controls controls.css.
+   Sections are flat: .selection-card needs no card of its own. */
+
+.selection-address {
+  overflow: hidden;
+  padding: 8px 10px;
+  border-radius: var(--radius-control);
+  color: var(--ink-2);
+  background: var(--sunken);
+  font: var(--w-strong) var(--fs-body) / 1.2 var(--mono);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap-tight);
+}
+.metrics div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  padding-left: 8px;
+  border-left: 2px solid var(--line-strong);
+}
+.metrics strong {
+  font-size: var(--fs-lead);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.metrics span {
+  overflow: hidden;
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+  text-overflow: ellipsis;
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-tight);
+}
+/* Templates: a search box over a list grouped by area. A row is a name and one
+   line on what it writes beside an Insert button; text that does not fit wraps
+   and the row grows, so the pane never scrolls sideways. Rows the query hides
+   carry [hidden], which tokens.css makes final. */
+.template-picker {
+  display: grid;
+  gap: var(--gap-block);
+}
+.template-search {
+  width: 100%;
+  min-width: 0;
+  min-height: var(--control-h);
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font: var(--w-regular) var(--fs-body) var(--font);
+}
+.template-search::placeholder {
+  color: var(--muted);
+  font-weight: var(--w-regular);
+}
+.template-search:hover {
+  border-color: var(--line-strong);
+}
+/* The native search-field decorations sit outside the box model every other
+   field shares; dropping them keeps the 34px control height honest. */
+.template-search::-webkit-search-cancel-button,
+.template-search::-webkit-search-decoration {
+  appearance: none;
+}
+/* The list scrolls inside its own box so eighteen templates do not push every
+   section below them out of reach. 15 control heights (510px) show six rows,
+   the next group's name and the top of its first row: under Mac overlay
+   scrollbars that cut-off row is the only sign the list scrolls. */
+.template-list {
+  display: grid;
+  gap: var(--gap-block);
+  max-height: calc(var(--control-h) * 15);
+  overflow-y: auto;
+}
+.template-group {
+  display: grid;
+  gap: var(--gap-tight);
+}
+.template-group-name {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+  line-height: 1.2;
+}
+.template-rows {
+  display: grid;
+  gap: var(--gap-tight);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.template-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--gap-tight);
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-row);
+  background: var(--paper);
+}
+.template-text {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.template-text strong {
+  color: var(--ink);
+  font-size: var(--fs-title);
+  font-weight: var(--w-strong);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.template-text span {
+  color: var(--ink-2);
+  font-size: var(--fs-body);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.template-insert {
+  min-height: var(--control-h);
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+.tool {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  gap: var(--gap-tight);
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+/* The bar before a style's name shows what the style paints. */
+.tool i {
+  width: 5px;
+  height: 22px;
+  flex: none;
+  border-radius: 2px;
+  background: var(--muted);
+}
+.style-title i {
+  background: var(--ink);
+}
+.style-header i {
+  background: var(--muted);
+}
+.style-input i {
+  background: var(--model-input);
+}
+.style-formula i {
+  background: var(--model-formula);
+}
+.style-result i {
+  background: var(--ok);
+}
+.style-clear i {
+  background: linear-gradient(var(--line-strong) 45%, transparent 45%);
+}
+
+/* Segmented strips. The 1px grid gap over a line-coloured background draws
+   every rule, in any wrap, without a nth-child rule per column count. */
+.number-strip,
+.scale-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: var(--line);
+}
+.number-strip button,
+.scale-row button {
+  min-height: var(--control-h);
+  padding: 5px 3px;
+  border: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+/* The strip clips to its rounded corners and has no border on a button, so
+   hover and the focus ring both draw just inside it. */
+.number-strip button:hover:not(:disabled),
+.scale-row button:hover:not(:disabled) {
+  outline: 1px solid var(--line-strong);
+  outline-offset: -1px;
+}
+.number-strip button:focus-visible:not(:disabled),
+.scale-row button:focus-visible:not(:disabled) {
+  outline: 2px solid var(--link);
+  outline-offset: -3px;
+}
+.cycle-strip,
+.paste-strip {
+  grid-template-columns: repeat(5, 1fr);
+}
+/* The style cycles carry one button more than the number-format strip. */
+.cycle-strip.style-strip {
+  grid-template-columns: repeat(6, 1fr);
+}
+/* The size cycles are two wide labels, so they take half the strip each. */
+.cycle-strip.size-strip,
+.trace-strip {
+  grid-template-columns: repeat(2, 1fr);
+}
+.scale-row {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.reconcile-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: var(--gap-tight);
+  align-items: end;
+}
+.reconcile-form label {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+  font-weight: var(--w-strong);
+}
+.reconcile-form input {
+  width: 100%;
+  min-width: 0;
+  height: var(--control-h);
+  padding: 4px 7px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font: var(--w-regular) var(--fs-body) var(--font);
+  font-variant-numeric: tabular-nums;
+}
+.reconcile-form input:hover {
+  border-color: var(--line-strong);
+}
+/* The primary look is in controls.css. */
+.reconcile-form button {
+  min-height: var(--control-h);
+  padding: 4px 10px;
+}
+
+.trace-panel {
+  display: grid;
+  gap: var(--gap-tight);
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-row);
+  background: var(--paper);
+}
+.trace-head {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-tight);
+}
+.trace-origin {
+  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+  color: var(--ink-2);
+  font: var(--w-strong) var(--fs-body) / 1.2 var(--mono);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Model check: the findings list wears the action-list row look, so a finding
+   reads like a Super Find hit. The kind badge sits in the row's third column,
+   where an action keeps its shortcut, and the note under the address is
+   allowed to wrap rather than push the badge off the row. */
+.find-list > button > .sheet-badge {
+  align-self: center;
+  justify-self: end;
+}
+.find-list > button > span > strong,
+.find-list > button > span > small {
+  overflow-wrap: anywhere;
+}
+
+/* Workbook view: sheet explorer, contents sheet, name scrubber. */
+.sheet-list {
+  display: grid;
+  gap: var(--gap-tight);
+}
+/* The active sheet carries an ink marker on its left edge (3px instead of
+   1px, the padding giving the difference back so the name never moves). Ink,
+   not lime: a thin lime line on paper is 1.2:1. */
+.sheet-row {
+  display: grid;
+  grid-template-columns: 1fr auto var(--control-h);
+  gap: var(--gap-tight);
+  align-items: center;
+  min-width: 0;
+  padding: 4px 5px 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-row);
+  background: var(--paper);
+}
+.sheet-row.active {
+  padding-left: 10px;
+  border-left: 3px solid var(--ink);
+}
+.sheet-name {
+  display: block;
+  overflow: hidden;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  color: var(--ink);
+  background: none;
+  font-size: var(--fs-title);
+  font-weight: var(--w-strong);
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+/* The global button states would repaint the bare name as a button. */
+.app-shell .sheet-name:disabled {
+  background: none;
+}
+.sheet-name:hover:not(:disabled) {
+  background: none;
+  text-decoration: underline;
+}
+.sheet-name.muted {
+  color: var(--ink-2);
+  cursor: default;
+}
+.sheet-badge {
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+  white-space: nowrap;
+}
+/* Hidden sheets and a check's findings are the ones worth a second look. */
+.sheet-badge.off::before {
+  background: var(--warn);
+}
+.eye {
+  width: var(--control-h);
+  height: var(--control-h);
+  flex: none;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink-2);
+  background: var(--paper);
+  font-size: var(--fs-micro);
+  line-height: 1;
+  cursor: pointer;
+}
+.eye:hover:not(:disabled) {
+  color: var(--ink);
+}
+.eye-slot {
+  display: block;
+  height: var(--control-h);
+}
+
+/* The narrowest dock Office gives a pane: the format grid drops to two
+   columns rather than squeezing six labels across three. */
+@media (max-width: 330px) {
+  .tool-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

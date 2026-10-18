@@ -1,0 +1,346 @@
+/* Every control both panes share: buttons and their states (hover, active,
+   focus, disabled, armed), icon buttons, action rows, ticked rows, fields,
+   chips and the state-word dot. A component sheet may restyle a rest state but
+   never invents its own states. Nothing here animates. */
+
+button {
+  font: inherit;
+}
+button:hover:not(:disabled) {
+  border-color: var(--line-strong);
+}
+button:active:not(:disabled) {
+  background: var(--sunken);
+}
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+.upload-drop:focus-within {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+/* Quiet, not invisible: a disabled control keeps its shape and drops to the
+   muted ink on the canvas (so a strip cell never shows its rule colour
+   through). Scoped to the shell so it outranks every component's own colour:
+   a plain button:disabled lost to them and looked live. */
+.app-shell button:disabled {
+  border-color: var(--line);
+  color: var(--muted);
+  background: var(--canvas);
+  cursor: not-allowed;
+}
+
+/* A state word: a dot and the words, no fill. The dot is muted until a
+   modifier colours it, and it sits on the text's baseline, so a word that
+   wraps keeps its dot on the first line. */
+.connection,
+.badge,
+.sheet-badge,
+.wl-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.connection::before,
+.badge::before,
+.sheet-badge::before,
+.wl-badge::before {
+  content: "";
+  flex: none;
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+  background: var(--muted);
+}
+/* Windows high contrast repaints backgrounds, which would blank the dot. */
+@media (forced-colors: active) {
+  .connection::before,
+  .badge::before,
+  .sheet-badge::before,
+  .wl-badge::before,
+  .privacy-dot {
+    forced-color-adjust: none;
+    background: CanvasText;
+  }
+}
+
+.icon-button {
+  width: var(--control-h);
+  height: var(--control-h);
+  flex: none;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: var(--icon-glyph);
+  cursor: pointer;
+}
+
+/* A button that reads as a link: words in the link color, still one tap target
+   tall (the Brand colors heading's Edit colors). */
+.link-action {
+  min-height: var(--control-h);
+  padding: 0 4px;
+  border: 0;
+  color: var(--link);
+  background: none;
+  font-size: var(--fs-body);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.action-list {
+  display: grid;
+  gap: var(--gap-tight);
+}
+.action-list > button {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 9px;
+  /* The icon and the shortcut label the title, so they sit on its line, not
+     in the middle of a description that may run to three lines. */
+  align-items: start;
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-row);
+  color: var(--ink);
+  background: var(--paper);
+  text-align: left;
+  cursor: pointer;
+}
+.action-list > button > span {
+  min-width: 0;
+}
+.action-list strong,
+.action-list small {
+  display: block;
+}
+.action-list strong {
+  font-size: var(--fs-title);
+  line-height: 1.25;
+}
+.action-list small {
+  margin-top: 3px;
+  color: var(--ink-2);
+  font-size: var(--fs-body);
+  font-weight: var(--w-regular);
+  line-height: 1.35;
+}
+.action-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-control);
+  color: var(--ink-2);
+  background: var(--sunken);
+  font-size: var(--icon-glyph);
+  font-weight: var(--w-strong);
+}
+.action-icon.colors {
+  color: var(--model-input);
+  text-shadow:
+    6px 0 var(--model-link),
+    3px 0 var(--model-formula);
+}
+.action-icon.audit,
+.action-icon.chart,
+.action-icon.key,
+.action-icon.links,
+.action-icon.names,
+.action-icon.toc {
+  color: var(--mark-ink);
+}
+/* The circular arrow draws large for its point size. */
+.action-icon.undo {
+  color: var(--mark-ink);
+  font-size: var(--fs-lead);
+}
+/* Two blocks read as a rising bridge; they need to sit on one line in 28px. */
+.action-icon.bridge {
+  color: var(--mark-ink);
+  font-size: var(--fs-micro);
+  letter-spacing: -1px;
+}
+
+kbd {
+  padding: 2px 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink-2);
+  background: var(--sunken);
+  font: var(--w-strong) var(--fs-micro) var(--mono);
+  white-space: nowrap;
+}
+
+.toggle-row {
+  display: grid;
+  grid-template-columns: var(--tick) 1fr;
+  gap: 10px;
+  align-items: start;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-row);
+  background: var(--paper);
+  cursor: pointer;
+}
+.toggle-row:hover {
+  border-color: var(--line-strong);
+}
+.toggle-row input {
+  width: var(--tick);
+  height: var(--tick);
+  margin: 1px 0 0;
+  accent-color: var(--ink);
+}
+.toggle-row strong {
+  display: block;
+  font-size: var(--fs-title);
+  line-height: 1.25;
+}
+.toggle-row small {
+  display: block;
+  margin-top: 3px;
+  color: var(--ink-2);
+  font-size: var(--fs-body);
+  line-height: 1.35;
+}
+
+.io-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-tight);
+}
+.io-row button,
+.io-import {
+  display: grid;
+  place-items: center;
+  min-height: var(--control-h);
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+  text-align: center;
+  cursor: pointer;
+}
+.io-import:hover {
+  border-color: var(--line-strong);
+}
+
+/* Primary: ink fill, lime words (15:1) - the one action a block turns on (Find
+   cells in the reconcile form, Paste latest linked in the Inbox). The press
+   lightens the fill to --ink-2 instead of the shared sunken tone, which would
+   leave lime words on a pale button (lime on --ink-2 is still 5.8:1). */
+.reconcile-form button,
+.paste-latest {
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-control);
+  color: var(--mark);
+  background: var(--ink);
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+.reconcile-form button:active:not(:disabled),
+.paste-latest:active:not(:disabled) {
+  background: var(--ink-2);
+}
+
+/* A destructive button reads as one by its red words alone; the first press
+   of its confirm adds the red border (see .armed at the foot of this sheet). */
+.danger {
+  display: block;
+  width: 100%;
+  min-height: var(--control-h);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--bad);
+  background: var(--paper);
+  font-size: var(--fs-body);
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+
+/* Fields: one height, one border, one focus ring for every select and text
+   input in either pane. */
+select,
+.key-input,
+.hex-input {
+  width: 100%;
+  min-width: 0;
+  min-height: var(--control-h);
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font: var(--w-regular) var(--fs-body) var(--font);
+}
+select:hover,
+.key-input:hover,
+.hex-input:hover {
+  border-color: var(--line-strong);
+}
+.key-input {
+  font: var(--w-regular) var(--fs-body) / 1.2 var(--mono);
+}
+/* A hex value is data, not a label: it reads in capitals, in the mono face. */
+.hex-input {
+  font: var(--w-strong) var(--fs-body) var(--mono);
+  text-transform: uppercase;
+}
+::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+.key-label {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+  font-weight: var(--w-strong);
+}
+
+.chip-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-tight);
+}
+/* A label that starts a group of chips: a whole row of the wrapping strip, so
+   the chips under it read as belonging to it. */
+.chip-group {
+  flex-basis: 100%;
+}
+.chip {
+  max-width: 100%;
+  overflow: hidden;
+  min-height: var(--control-h);
+  padding: 4px 9px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--paper);
+  font: var(--w-strong) var(--fs-body) var(--mono);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* Armed: the first press of a confirm (src/ui/confirm.ts) has landed and the
+   second one acts. Whatever the control - a button, an action row, an icon -
+   it reads as --bad words on paper inside a --bad border; the label or the
+   title already says "Click again to confirm", so a fixed 34px square never
+   has to stretch to hold a sentence. The shell prefix outranks every
+   component's own colour. */
+.app-shell button.armed,
+.app-shell button.armed:hover:not(:disabled) {
+  border-color: var(--bad);
+  color: var(--bad);
+}

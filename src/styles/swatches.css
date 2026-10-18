@@ -1,0 +1,98 @@
+/* The brand color swatches both panes share (src/ui/swatches.ts): a row of
+   color buttons per mode and one Shades row. The colors are painted inline by
+   the script (the user's palette is data), so no color value lives here, and
+   nothing in this sheet may widen the pane. */
+
+.swatches {
+  display: grid;
+  gap: var(--gap-tight);
+  min-width: 0;
+}
+/* A row is a grid, so the Fill and Font rows share their columns: a label,
+   one column per color, and a last column for the No fill button that a strip
+   without one leaves empty. The swatch under the pointer, a row down, is then
+   the same color. */
+.swatch-row {
+  display: grid;
+  grid-template-columns:
+    var(--swatch-label-w) repeat(var(--swatch-count), minmax(0, 1fr))
+    var(--swatch-none-w);
+  gap: 4px;
+  align-items: center;
+  min-width: 0;
+}
+.swatch-ladder {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.swatch-label {
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+}
+
+/* A swatch: as wide as its share of the row and one tap target tall, drawn in
+   the look of its mode (src/ui/swatch-look.ts). Fill is a flat painted block;
+   Font and Text a bold A over a bar of the color, the way Office's own font
+   color button shows it; Outline a ring. The script paints each color inline on
+   whichever part carries it. The pressed look is the border, never the color. */
+.swatch {
+  min-width: 0;
+  height: var(--swatch-h);
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
+  background: var(--paper);
+  cursor: pointer;
+}
+.swatch:hover:not(:disabled) {
+  border-color: var(--ink);
+}
+/* The swatch the Shades row below belongs to. */
+.swatch[aria-current="true"] {
+  border: 2px solid var(--ink);
+}
+.swatch:disabled {
+  opacity: 0.5;
+}
+/* Font and Text: the A over its bar, centered on the paper ground. */
+.swatch-letter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.swatch-glyph {
+  font-size: var(--fs-lead);
+  font-weight: var(--w-strong);
+  line-height: 1;
+}
+.swatch-bar {
+  align-self: stretch;
+  height: var(--swatch-bar-h);
+  margin: 0 2px;
+}
+/* Outline: a thick border in the color around the paper ground, the middle
+   left empty. It fills the button's inside, so the pressed border frames it. */
+.swatch-hoop {
+  display: block;
+  height: 100%;
+  border: var(--swatch-ring-w) solid;
+  border-radius: 2px;
+}
+/* The one button with a word on it: No fill. */
+.swatch-none {
+  padding: 0 4px;
+  color: var(--ink);
+  font-size: var(--fs-micro);
+  font-weight: var(--w-strong);
+}
+
+.swatch-shades {
+  display: grid;
+  gap: 4px;
+}
+.swatch-caption {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+}
